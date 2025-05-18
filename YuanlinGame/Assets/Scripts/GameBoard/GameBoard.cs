@@ -9,10 +9,11 @@ public class GameBoard : MonoBehaviour
     Transform ground = default;
 
     public Vector2Int size;
+    public ShapeCard shapeCardRef; // å½“å‰åœºæ™¯ä¸­ä¸è¯¥æ‹¼å›¾ç»‘å®šçš„å¡ç‰Œ
 
     public GameTile tilePrefab = default;
 
-    GameTile[] tiles; //ÓÃarray¶ø·ÇlistÀ´´æ´¢£¬ÒòÎªtileÒ»¾­Éú³É¾Í²»»áÔÙ±»Ïú»Ù»òÇå³ı
+    GameTile[] tiles; //ï¿½ï¿½arrayï¿½ï¿½ï¿½ï¿½listï¿½ï¿½ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ÎªtileÒ»ï¿½ï¿½ï¿½ï¿½ï¿½É¾Í²ï¿½ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ï¿½Ù»ï¿½ï¿½ï¿½ï¿½
     public float xOffset;
     public float zOffset;
 
@@ -33,7 +34,7 @@ public class GameBoard : MonoBehaviour
             for (int j = 0; j < size.y; j++,index++)
             {             
                 GameTile tile = Instantiate(tilePrefab);
-                tile.transform.SetParent(transform, false); //·ÀÖ¹tileµÄtransformÖµËæ×Å¸¸¼¶¸Ä±ä
+                tile.transform.SetParent(transform, false); //ï¿½ï¿½Ö¹tileï¿½ï¿½transformÖµï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
                 tile.transform.localPosition = new Vector3(i - size.x * 0.5f + 0.5f,transform.position.z + 0.001f, j - size.y * 0.5f + 0.5f);
                 tiles[index] = tile;
             }
@@ -47,7 +48,7 @@ public class GameBoard : MonoBehaviour
 
     }
 
-    //¼ì²é´É×©¿ÉÓÃĞÔ
+    //ï¿½ï¿½ï¿½ï¿½×©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void CheckTileState(int num)
     {
         for (int t = 0; t < size.x * size.y; t++)
@@ -63,7 +64,7 @@ public class GameBoard : MonoBehaviour
         }
     }
 
-    //¼ì²é´É×©µÄ¸÷ÀàÄÚÈİÎïÊıÁ¿
+    //ï¿½ï¿½ï¿½ï¿½×©ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int[] countNum()
     {
         int[] counts = { 0, 0, 0, 0 };
@@ -108,13 +109,13 @@ public class GameBoard : MonoBehaviour
         return null;
     }
 
-    //´¥Åö´É×©
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×©
     public GameTile GetTile(Ray ray)
     {
         if (Physics.Raycast(ray, out RaycastHit hit)) {
-            int x = (int)(hit.point.z + size.y * 0.5f); //»ñÈ¡´¥Åöµã¶ÔÓ¦µÄ´É×©µÄ±àºÅ
+            int x = (int)(hit.point.z + size.y * 0.5f); //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ä´ï¿½×©ï¿½Ä±ï¿½ï¿½
             int y = (int)(hit.point.x + size.x * 0.5f);            
-            //ÅĞ¶ÏÊÇ·ñ³ö½ç
+            //ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
             if(x >= 0 && x < size.x && y >= 0 && y < size.y)
             {
                 print(x + y * size.x);
@@ -125,7 +126,7 @@ public class GameBoard : MonoBehaviour
         return null;
     }
 
-    //Çå³ıËùÓĞ²»Îª¿ÕµÄ´É×©µÄÑ¡Ôñ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ²ï¿½Îªï¿½ÕµÄ´ï¿½×©ï¿½ï¿½Ñ¡ï¿½ï¿½
     public void clearSelect()
     {
         for (int t = 0;t<size.x * size.y; t++)
@@ -153,4 +154,43 @@ public class GameBoard : MonoBehaviour
     {
         
     }
+    public void OnPuzzleFailedToPlace(GamePuzzle puzzle)
+    {
+        // å›æ”¶å®ä¾‹
+        if (shapeCardRef != null)
+        {
+            shapeCardRef.RecoverOneUse(); // é€šçŸ¥å¡ç‰Œ+1
+        }
+
+        Destroy(puzzle.gameObject); // åˆ é™¤å½“å‰åœºä¸Šçš„æ‹¼å›¾
+    }
+    // ä¼ å…¥æƒ³æ”¾ç½®ç‰©ä½“çš„ä¸–ç•Œä½ç½® å’Œ ç‰©ä½“çš„åˆå§‹ä½ç½®
+// è¿”å›boolæ˜¯å¦å…è®¸æ”¾ç½®ï¼Œå¦‚æœä¸å…è®¸ï¼Œè°ƒç”¨æ–¹è‡ªå·±å¤ä½ç‰©ä½“ä½ç½®
+    public bool TryPlaceObjectAt(Vector3 placePosition, Transform objectTransform, Vector3 originalPosition)
+    {
+        Ray ray = new Ray(placePosition + Vector3.up * 10f, Vector3.down);
+        GameTile tile = GetTile(ray);
+
+        if (tile == null)
+        {
+            // ä¸åœ¨ä»»ä½•æ ¼å­ï¼Œæ”¾ç½®å¤±è´¥
+            return false;
+        }
+
+        if (tile.Content != null && tile.Content.Type != GameTileContentType.Empty)
+        {
+            // æ ¼å­è¢«å ç”¨ï¼Œæ”¾ç½®å¤±è´¥
+            return false;
+        }
+
+        // æ ¼å­ç©ºé—²ï¼Œæ”¾ç½®æˆåŠŸï¼Œè°ƒæ•´ç‰©ä½“ä½ç½®åˆ°æ ¼å­ä¸­å¿ƒ
+        objectTransform.position = tile.transform.position + Vector3.up * 0.1f;
+
+        // è¿™é‡Œä½ å¯ä»¥æ›´æ–°tile.ContentçŠ¶æ€ï¼Œè¡¨ç¤ºæ ¼å­è¢«å ç”¨ï¼Œæ¯”å¦‚ï¼š
+        // tile.Content = new GameTileContent(GameTileContentType.YourObjectType, objectTransform);
+        // å…·ä½“æ ¹æ®ä½ çš„é¡¹ç›®æ”¹
+
+        return true;
+    }
+
 }

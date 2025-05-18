@@ -5,10 +5,10 @@ using UnityEngine;
 public class GamePuzzle : MonoBehaviour
 {
     [SerializeField]
-    Vector2Int[] shapeOffsets; // Ïà¶ÔÓÚÖĞĞÄµÄtileÆ«ÒÆ£¨ÀıÈç£ºLĞÎ¡¢2x2ĞÎ£©
+    Vector2Int[] shapeOffsets; // å½¢çŠ¶åç§»æ ¼å­ï¼Œæ¯”å¦‚Lå½¢2x2ç­‰
 
-    [SerializeField]
-    GameBoard gameBoard;
+    // [SerializeField]
+    // GameBoard gameBoard;
 
     private List<GameTile> occupiedTiles = new List<GameTile>();
     private List<GameTile> previewTiles = new List<GameTile>();
@@ -16,13 +16,31 @@ public class GamePuzzle : MonoBehaviour
     private bool isDragging = false;
     private Camera mainCam;
 
+    // --- æ–°å¢ï¼Œç®¡ç†å½“å‰é€‰ä¸­çš„å®ä¾‹ ---
+    private static GamePuzzle currentSelected = null;
+    private bool isSelected = false;
+    [SerializeField]
+    public GameBoard gameBoard;
+
+    public void SetGameBoard(GameBoard board)
+    {
+        gameBoard = board;
+    }
+
+
     private void Awake()
     {
         mainCam = Camera.main;
+
+        // ç¡®ä¿shapeOffsetsç‹¬ç«‹ï¼Œä¸å¼•ç”¨å¤–éƒ¨ä¼ å…¥çš„æ•°ç»„ï¼ˆè‹¥æ˜¯å¤–éƒ¨SetShapeè°ƒç”¨ï¼‰
+        if(shapeOffsets != null)
+            SetShape(shapeOffsets);
     }
 
     void Update()
     {
+        if (!isSelected) return; // åªæœ‰é€‰ä¸­ç‰©ä½“æ‰å“åº”è¾“å…¥
+
         HandleRotation();
         HandleDragging();
     }
@@ -67,7 +85,7 @@ public class GamePuzzle : MonoBehaviour
         }
     }
 
-    // ºËĞÄÎü¸½Âß¼­
+    // å¸é™„åˆ°æ ¼å­é€»è¾‘
     Vector3 SnapToGrid(Vector3 hitPoint)
     {
         Vector3 boardOrigin = gameBoard.transform.position;
@@ -94,7 +112,7 @@ public class GamePuzzle : MonoBehaviour
             GameTile tile = gameBoard.GetTileAt(x, z);
             if (tile != null)
             {
-                tile.selectGrid(); // ¸ßÁÁ
+                tile.selectGrid(); // é«˜äº®
                 previewTiles.Add(tile);
             }
         }
@@ -105,7 +123,7 @@ public class GamePuzzle : MonoBehaviour
         foreach (var tile in previewTiles)
         {
             if (tile != null)
-                tile.restoreGrid(); // È¡Ïû¸ßÁÁ
+                tile.restoreGrid(); // å–æ¶ˆé«˜äº®
         }
         previewTiles.Clear();
     }
@@ -117,7 +135,7 @@ public class GamePuzzle : MonoBehaviour
         int halfX = gameBoard.size.x / 2;
         int halfZ = gameBoard.size.y / 2;
 
-        // ¼ÆËãÖĞĞÄ tile Ë÷Òı£¨ÎŞÂÛÆæÅ¼¶¼ÊÊÓÃ£©
+        // æ ¹æ®ä¸­å¿ƒç‚¹å’Œåç§»è®¡ç®—ç›®æ ‡æ ¼å­
         int cx = Mathf.RoundToInt(worldPosition.x - boardOrigin.x);
         int cz = Mathf.RoundToInt(worldPosition.z - boardOrigin.z);
 
@@ -134,11 +152,11 @@ public class GamePuzzle : MonoBehaviour
             targetTiles.Add(tile);
         }
 
-        // ¼ÆËã tile ÖĞĞÄÆ«ÒÆÁ¿£¨ÓÃÓÚ·ÅÖÃ Puzzle Î»ÖÃ£©
+        // å¸é™„åˆ°ç›®æ ‡ä½ç½®
         float worldX = boardOrigin.x + cx - gameBoard.xOffset;
         float worldZ = boardOrigin.z + cz - gameBoard.zOffset;
         transform.position = new Vector3(worldX, transform.position.y, worldZ);
-        Debug.Log(worldX);
+
         occupiedTiles = targetTiles;
         MarkTilesAsUsed();
         return true;
@@ -170,15 +188,52 @@ public class GamePuzzle : MonoBehaviour
         return offset;
     }
 
+    // æ·±æ‹·è´shapeOffsetsï¼Œé¿å…å¤šä¸ªç‰©ä½“å…±äº«å¼•ç”¨
     public void SetShape(Vector2Int[] newShape)
     {
-        shapeOffsets = newShape;
+        shapeOffsets = new Vector2Int[newShape.Length];
+        for (int i = 0; i < newShape.Length; i++)
+        {
+            shapeOffsets[i] = newShape[i];
+        }
     }
+
+    // -------- æ–°å¢é¼ æ ‡ç‚¹å‡»é€‰ä¸­é€»è¾‘ --------
+    private void OnMouseDown()
+    {
+        // å–æ¶ˆä¹‹å‰é€‰ä¸­ç‰©ä½“
+        if (currentSelected != null && currentSelected != this)
+        {
+            currentSelected.Deselect();
+        }
+
+        Select();
+    }
+
+    public void Select()
+{
+    if (currentSelected != null && currentSelected != this)
+    {
+        currentSelected.Deselect();
+    }
+    isSelected = true;
+    currentSelected = this;
+    // é€‰ä¸­é«˜äº®é€»è¾‘
+}
+
+
+    void Deselect()
+    {
+        isSelected = false;
+        ClearPreviewTiles();
+        // å–æ¶ˆé€‰ä¸­é«˜äº®
+    }
+
 
     private void OnDrawGizmosSelected()
     {
 #if UNITY_EDITOR
-        Color fillColor = new Color(1f, 1f, 0f, 0.25f); // °ëÍ¸Ã÷»ÆÉ«Ìî³ä
+        Color fillColor = new Color(1f, 1f, 0f, 0.25f); // åŠé€æ˜é»„è‰²
         Color borderColor = Color.yellow;
 
         Vector3 centerPos = transform.position;
@@ -188,11 +243,11 @@ public class GamePuzzle : MonoBehaviour
             Vector2Int offset = shapeOffsets[i];
             Vector3 tilePos = centerPos + new Vector3(offset.x, 0f, offset.y);
 
-            // ---- Ìî³äÑÕÉ« ----
+            // ---- å¡«å……é¢œè‰² ----
             Gizmos.color = fillColor;
             Gizmos.DrawCube(tilePos + Vector3.up * 0.01f, new Vector3(1f, 0.02f, 1f));
 
-            // ---- ÊµÉ«±ß¿ò ----
+            // ---- ç”»è¾¹æ¡† ----
             Gizmos.color = borderColor;
             Vector3 p1 = tilePos + new Vector3(-0.5f, 0.01f, -0.5f);
             Vector3 p2 = tilePos + new Vector3(0.5f, 0.01f, -0.5f);
@@ -203,11 +258,11 @@ public class GamePuzzle : MonoBehaviour
             Gizmos.DrawLine(p3, p4);
             Gizmos.DrawLine(p4, p1);
 
-            // ---- ÎÄ×Ö±êÇ© ----
+            // ---- æ–‡å­—æ ‡ç­¾ ----
             Handles.color = Color.white;
             Handles.Label(tilePos + Vector3.up * 0.2f, $"#{i}: ({offset.x},{offset.y})");
         }
 #endif
     }
 
-}
+} 
