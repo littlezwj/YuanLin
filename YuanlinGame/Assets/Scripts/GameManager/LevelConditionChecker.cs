@@ -53,54 +53,60 @@ public class LevelConditionChecker : MonoBehaviour
     // 当物体被放置或移除时调用此方法
     public void UpdateConditions()
 {
-    // 重置计数（仅一次）
+    // 重置 Tag 条件
     foreach (var condition in tagConditions)
     {
         condition.currentCount = 0;
         condition.isCompleted = false;
     }
 
+    // 重置数值条件
+    valueCondition.currentHiddenValue = 0;
+    valueCondition.currentElegantValue = 0;
+    valueCondition.currentAgileValue = 0;
+    valueCondition.currentZenValue = 0;
+    valueCondition.isCompleted = false;
+
     // 遍历所有格子
     for (int i = 0; i < gameBoard.size.x * gameBoard.size.y; i++)
     {
         GameTile tile = gameBoard.GetTileAt(i % gameBoard.size.x, i / gameBoard.size.x);
-        if (tile == null || tile.Content == null)
-        {
-            continue;
-        }
+        if (tile == null || tile.Content == null) continue;
 
-        Debug.Log($"Checking Tile at ({i % gameBoard.size.x}, {i / gameBoard.size.x}): Type={tile.Content.Type}");
+        // 检测 Tag 条件
         if (tile.Content.Type == GameTileContentType.Tool)
         {
-            GamePuzzle puzzle = tile.Content.GetComponent<GamePuzzle>();
-            if (puzzle == null)
+            ItemParameters itemParams = tile.Content.GetComponent<ItemParameters>();
+            if (itemParams != null)
             {
-                Debug.LogWarning("Tile has no GamePuzzle component!");
-                continue;
-            }
-
-            ItemParameters itemParams = puzzle.GetComponent<ItemParameters>();
-            if (itemParams == null)
-            {
-                Debug.LogWarning("GamePuzzle has no ItemParameters component!");
-                continue;
-            }
-
-            Debug.Log($"Found ItemParams: {itemParams.typeTag}");
-            foreach (var condition in tagConditions)
-            {
-                if (itemParams.typeTag == condition.typeTag)
+                // 更新 Tag 条件
+                foreach (var condition in tagConditions)
                 {
-                    condition.currentCount++;
-                    Debug.Log($"Matched Tag: {condition.typeTag}, New Count: {condition.currentCount}");
-                    if (condition.currentCount >= condition.requiredCount)
+                    if (itemParams.typeTag == condition.typeTag)
                     {
-                        condition.isCompleted = true;
+                        condition.currentCount++;
+                        condition.isCompleted = condition.currentCount >= condition.requiredCount;
                     }
                 }
+
+                // 累加数值
+                valueCondition.currentHiddenValue += itemParams.hiddenValue;
+                valueCondition.currentElegantValue += itemParams.elegantValue;
+                valueCondition.currentAgileValue += itemParams.agileValue;
+                valueCondition.currentZenValue += itemParams.zenValue;
             }
         }
     }
+
+    // 检查数值条件
+    valueCondition.isCompleted =
+        valueCondition.currentHiddenValue >= valueCondition.requiredHiddenValue &&
+        valueCondition.currentElegantValue >= valueCondition.requiredElegantValue &&
+        valueCondition.currentAgileValue >= valueCondition.requiredAgileValue &&
+        valueCondition.currentZenValue >= valueCondition.requiredZenValue;
+
+    // 调试输出
+    Debug.Log($"数值总和 - 隐逸: {valueCondition.currentHiddenValue}/{valueCondition.requiredHiddenValue}, 清雅: {valueCondition.currentElegantValue}/{valueCondition.requiredElegantValue}, 灵动: {valueCondition.currentAgileValue}/{valueCondition.requiredAgileValue}, 禅意: {valueCondition.currentZenValue}/{valueCondition.requiredZenValue}");
 }
 
     // 检查所有条件是否完成
