@@ -5,16 +5,12 @@ using UnityEngine;
 public class GameTile : MonoBehaviour
 {
     //-------------状态-------------
-    [SerializeField]
-    GameTileState state = GameTileState.Available; //是否是敌人生成点和是否可用应该不冲突
-    bool available = true;
+    public GameTileState state = GameTileState.Available; //是否是敌人生成点和是否可用应该不冲突
 
     [SerializeField]
     bool isSpawnPoint = false;
 
     public bool IsSpawnPoint => isSpawnPoint;
-
-    public GameTileState State => state;
 
     //-------------网格-------------
     [SerializeField]
@@ -22,9 +18,9 @@ public class GameTile : MonoBehaviour
 
     public Material[] materials;
     
-    public void selectGrid()
+    public void SelectGrid()
     {
-        if (available)
+        if (state == GameTileState.Available)
         {
             MeshRenderer gridRenderer = grid.gameObject.GetComponent<MeshRenderer>();
             if(materials[1] != null)
@@ -35,33 +31,47 @@ public class GameTile : MonoBehaviour
             {   
                 Debug.Log("Warning: Miss Material,Please check for the mistake");
             }
-        }     
-    }
-
-    public void restoreGrid()
-    {
-        if (available) 
-        { 
-            MeshRenderer gridRenderer = grid.gameObject.GetComponent<MeshRenderer>();
-            if (materials[0] != null)
-            {
-                gridRenderer.material = materials[0];
-            }
-            else
-            {
-                Debug.Log("Warning: Miss Material,Please check for the mistake");
-            }
         }
-        
+        else
+        {
+            DisableGrid();
+        }
     }
 
-    public void disableGrid()
+    public void RestoreGrid()
+    {
+        this.state = GameTileState.Available;
+        MeshRenderer gridRenderer = grid.gameObject.GetComponent<MeshRenderer>();
+        if (materials[0] != null)
+        {
+            gridRenderer.material = materials[0];
+        }
+        else
+        {
+            Debug.Log("Warning: Miss Material,Please check for the mistake");
+        }      
+    }
+
+    public void DisableGrid()
     {
         MeshRenderer gridRenderer = grid.gameObject.GetComponent<MeshRenderer>();
         if (materials[2] != null)
         {
             gridRenderer.material = materials[2];
-            available = false;
+        }
+        else
+        {
+            Debug.Log("Warning: Miss Material,Please check for the mistake");
+        }
+    }
+
+    public void OccupiedGrid()
+    {
+        this.state = GameTileState.Occupied;
+        MeshRenderer gridRenderer = grid.gameObject.GetComponent<MeshRenderer>();
+        if (materials[3] != null)
+        {
+            gridRenderer.material = materials[3];
         }
         else
         {
@@ -73,7 +83,7 @@ public class GameTile : MonoBehaviour
     GameTileContent content; //内容物也是瓷砖的属性之一
 
     [SerializeField]
-    GameTileContentFactory tileContentFactory = default;
+    //GameTileContentFactory tileContentFactory = default;
 
     public GameTileContent Content
     {
@@ -90,6 +100,7 @@ public class GameTile : MonoBehaviour
         }
     }
 
+    /*
     public void SetAsSpawnPoint(int num)
     {
         Content = tileContentFactory.Get(GameTileContentType.SpawnPoint, num);
@@ -110,7 +121,7 @@ public class GameTile : MonoBehaviour
             Content = tileContentFactory.Get(GameTileContentType.Empty, nums[0]);
         }
     }
-
+    */
     // Start is called before the first frame update
     void Start()
     {

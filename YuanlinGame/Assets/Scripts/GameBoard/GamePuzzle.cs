@@ -1,14 +1,12 @@
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 
-public class GamePuzzle : GameTileContent
+public class GamePuzzle : MonoBehaviour
 {
     [SerializeField]
     Vector2Int[] shapeOffsets; // 形状偏移格子，比如L形2x2等
-
-    // [SerializeField]
-    // GameBoard gameBoard;
 
     private List<GameTile> occupiedTiles = new List<GameTile>();
     private List<GameTile> previewTiles = new List<GameTile>();
@@ -17,12 +15,13 @@ public class GamePuzzle : GameTileContent
     private Camera mainCam;
 
     // --- 新增，管理当前选中的实例 ---
-    private static GamePuzzle currentSelected = null;
+    //private static GamePuzzle currentSelected = null;
     private bool isSelected = false;
+    private bool isPlaced = false;
     [SerializeField]
     public GameBoard gameBoard;
     // 在 GamePuzzle 类中添加以下属性
-    
+    public GameTileContentType Type { get; set; } // 将 set 设为公开
 
     public void SetGameBoard(GameBoard board)
     {
@@ -44,7 +43,7 @@ public class GamePuzzle : GameTileContent
         if (!isSelected) return; // 只有选中物体才响应输入
 
         HandleRotation();
-        HandleDragging();
+        //HandlePlace();
     }
 
     void HandleRotation()
@@ -61,7 +60,7 @@ public class GamePuzzle : GameTileContent
         }
     }
 
-    void HandleDragging()
+    void HandlePlace()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -73,22 +72,28 @@ public class GamePuzzle : GameTileContent
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Vector3 snappedPos = SnapToGrid(hit.point);
+                Vector3 snappedPos = SnapGridPos(hit.point);
                 transform.position = new Vector3(snappedPos.x, transform.position.y, snappedPos.z);
-                HighlightPreviewTiles(snappedPos);
+                HighlightPreviewTiles();
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            isDragging = false;
-            ClearPreviewTiles();
-            TryPlaceAt(transform.position);
+            isDragging = false;           
+            isPlaced = TryPlaceAt();
         }
     }
 
+    public void SnapToGrid(Vector3 hit_pos)
+    {
+        Vector3 snappedPos = SnapGridPos(hit_pos);
+        transform.position = new Vector3(snappedPos.x, transform.position.y, snappedPos.z);
+        HighlightPreviewTiles();
+    }
+
     // 吸附到格子逻辑
-    Vector3 SnapToGrid(Vector3 hitPoint)
+    Vector3 SnapGridPos(Vector3 hitPoint)
     {
         Vector3 boardOrigin = gameBoard.transform.position;
         int x = Mathf.RoundToInt(hitPoint.x - boardOrigin.x);
@@ -96,26 +101,32 @@ public class GamePuzzle : GameTileContent
         return new Vector3(boardOrigin.x + x - gameBoard.xOffset, boardOrigin.y, boardOrigin.z + z - gameBoard.zOffset);
     }
 
-    void HighlightPreviewTiles(Vector3 snappedPos)
+    Vector2 GetBoardOffset()
     {
-        ClearPreviewTiles();
-
+        Vector3 selfPos = transform.position;
         Vector3 boardOrigin = gameBoard.transform.position;
         int halfX = gameBoard.size.x / 2;
         int halfZ = gameBoard.size.y / 2;
 
-        int cx = Mathf.RoundToInt(snappedPos.x - boardOrigin.x + halfX - 0.5f);
-        int cz = Mathf.RoundToInt(snappedPos.z - boardOrigin.z + halfZ - 0.5f);
+        int cx = Mathf.RoundToInt(selfPos.x - boardOrigin.x + halfX - 0.5f);
+        int cz = Mathf.RoundToInt(selfPos.z - boardOrigin.z + halfZ - 0.5f);
 
+        return new Vector2(cx, cz);
+    }
+
+    void HighlightPreviewTiles()
+    {
+        ClearPreviewTiles();
+        Vector2 boardOffset = GetBoardOffset();
         foreach (var offset in shapeOffsets)
         {
-            int x = cx + offset.x;
-            int z = cz + offset.y;
+            int x = (int)boardOffset.x + offset.x;
+            int z = (int)boardOffset.y + offset.y;
             GameTile tile = gameBoard.GetTileAt(x, z);
             if (tile != null)
             {
-                tile.selectGrid(); // 高亮
-                previewTiles.Add(tile);
+                tile.SelectGrid(); // 高亮
+                previewTiles.Add(tile);                          
             }
         }
     }
@@ -125,70 +136,71 @@ public class GamePuzzle : GameTileContent
         foreach (var tile in previewTiles)
         {
             if (tile != null)
-                tile.restoreGrid(); // 取消高亮
+            {
+                if (tile.state == GameTileState.Available)
+                    tile.RestoreGrid();
+                else
+                    tile.OccupiedGrid();
+            }            
         }
         previewTiles.Clear();
     }
 
 
-    public bool TryPlaceAt(Vector3 worldPosition)
-{
-    Vector3 boardOrigin = gameBoard.transform.position;
-    int halfX = gameBoard.size.x / 2;
-    int halfZ = gameBoard.size.y / 2;
-
-    // 根据中心点和偏移计算目标格子
-    int cx = Mathf.RoundToInt(worldPosition.x - boardOrigin.x);
-    int cz = Mathf.RoundToInt(worldPosition.z - boardOrigin.z);
-
-    List<GameTile> targetTiles = new List<GameTile>();
-    foreach (var offset in shapeOffsets)
+    public bool TryPlaceAt()
     {
-        int x = cx + offset.x;
-        int z = cz + offset.y;
-        GameTile tile = gameBoard.GetTileAt(x, z);
-        if (tile == null || tile.State == GameTileState.Disable)
+        ClearPreviewTiles();
+        Vector2 boardOffset = GetBoardOffset();
+        Vector3 boardOrigin = gameBoard.transform.position;
+        List<GameTile> targetTiles = new List<GameTile>();
+        foreach (var offset in shapeOffsets)
         {
-            return false;
+            int x = (int)boardOffset.x + offset.x;
+            int z = (int)boardOffset.y + offset.y;
+            GameTile tile = gameBoard.GetTileAt(x, z);
+            if (tile == null || tile.state != GameTileState.Available)
+            {
+                return false;
+            }
+            targetTiles.Add(tile);
         }
-        targetTiles.Add(tile);
+
+        // 吸附到目标位置
+        //float worldX = boardOrigin.x + (int)boardOffset.x - gameBoard.xOffset;
+        //float worldZ = boardOrigin.z + (int)boardOffset.y - gameBoard.zOffset;
+        //transform.position = new Vector3(worldX, transform.position.y, worldZ);
+
+        // 设置格子的内容类型为 Tool
+        //foreach (GameTile tile in targetTiles)
+        //{
+        //    if (tile.Content != null)
+        //    {
+        //        tile.Content.Type = GameTileContentType.Tool; // 在放置物体时设置类型
+        //    }
+        //}
+
+        occupiedTiles = targetTiles;
+        MarkTilesAsUsed();
+        FindObjectOfType<LevelConditionChecker>()?.UpdateConditions(); // 新增调用
+        return true;
     }
-
-    // 吸附到目标位置
-    float worldX = boardOrigin.x + cx - gameBoard.xOffset;
-    float worldZ = boardOrigin.z + cz - gameBoard.zOffset;
-    transform.position = new Vector3(worldX, transform.position.y, worldZ);
-
-    // 设置格子的内容类型为 Tool
-    foreach (GameTile tile in targetTiles)
-    {
-        if (tile.Content != null)
-        {
-            tile.Content.Type = GameTileContentType.Tool; // 在放置物体时设置类型
-        }
-    }
-
-    occupiedTiles = targetTiles;
-    MarkTilesAsUsed();
-    FindObjectOfType<LevelConditionChecker>()?.UpdateConditions(); // 新增调用
-    return true;
-}
 
     private void MarkTilesAsUsed()
     {
         foreach (GameTile tile in occupiedTiles)
         {
-            tile.disableGrid();
+            tile.OccupiedGrid();
         }
     }
 
     void UpdateShapeRotation(float angle)
-    {
+    {        
         for (int i = 0; i < shapeOffsets.Length; i++)
         {
             Vector2Int old = shapeOffsets[i];
             shapeOffsets[i] = RotateOffset(old, angle);
         }
+        HighlightPreviewTiles();
     }
 
     Vector2Int RotateOffset(Vector2Int offset, float angle)
@@ -211,34 +223,34 @@ public class GamePuzzle : GameTileContent
     }
 
     // -------- 新增鼠标点击选中逻辑 --------
-    private void OnMouseDown()
-    {
-        // 取消之前选中物体
-        if (currentSelected != null && currentSelected != this)
-        {
-            currentSelected.Deselect();
-        }
+    //private void OnMouseDown()
+    //{
+    //    // 取消之前选中物体
+    //    if (currentSelected != null && currentSelected != this)
+    //    {
+    //        currentSelected.Deselect();
+    //    }
 
-        Select();
-    }
+    //    Select();
+    //}
 
     public void Select()
-{
-    if (currentSelected != null && currentSelected != this)
     {
-        currentSelected.Deselect();
+    //    if (currentSelected != null && currentSelected != this)
+    //    {
+    //        currentSelected.Deselect();
+    //    }
+        isSelected = true;
+        //currentSelected = this;
+        // 选中高亮逻辑
     }
-    isSelected = true;
-    currentSelected = this;
-    // 选中高亮逻辑
-}
 
 
     void Deselect()
     {
         isSelected = false;
-        ClearPreviewTiles();
-        // 取消选中高亮
+    //    ClearPreviewTiles();
+    //    // 取消选中高亮
     }
 
 

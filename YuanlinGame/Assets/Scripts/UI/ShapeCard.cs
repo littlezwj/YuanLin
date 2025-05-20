@@ -5,14 +5,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShapeCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public GameObject shapePrefab;
     public int maxUses = 2;
     private int currentUses;
 
     private GameObject draggingInstance;
-    private Vector3 originalPosition;
     private Canvas canvas;
     private GameBoard gameBoard;
 
@@ -46,10 +45,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         if (!canDrag || currentUses <= 0) return;
 
-        originalPosition = transform.position;
-
         draggingInstance = Instantiate(shapePrefab);
-        draggingInstance.SetActive(false);
 
         var puzzleInstance = draggingInstance.GetComponent<GamePuzzle>();
         if (puzzleInstance != null)
@@ -59,6 +55,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
     }
 
+    
     public void OnDrag(PointerEventData eventData)
     {
         if (!canDrag || draggingInstance == null) return;
@@ -67,24 +64,26 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (!draggingInstance.activeSelf)
-                draggingInstance.SetActive(true);
-
-            Vector3 pos = hit.point;
-            pos.y = 0.1f;
-            draggingInstance.transform.position = pos;
+            //if (!draggingInstance.activeSelf)
+            //    draggingInstance.SetActive(true);
+            var puzzleInstance = draggingInstance.GetComponent<GamePuzzle>();
+            if (puzzleInstance != null)
+            {
+                puzzleInstance.SnapToGrid(hit.point);
+            }
         }
-        else
-        {
-            draggingInstance.SetActive(false);
-        }
+        //else
+        //{
+        //    draggingInstance.SetActive(false);
+        //}
     }
-
+    
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!canDrag || draggingInstance == null) return;
-
-        bool placed = gameBoard.TryPlaceObjectAt(draggingInstance.transform.position, draggingInstance.transform, draggingInstance.transform.position);
+        var puzzleInstance = draggingInstance.GetComponent<GamePuzzle>();
+        if (puzzleInstance == null) return;
+        bool placed = puzzleInstance.TryPlaceAt();
 
         if (placed)
         {
@@ -98,10 +97,9 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
         else
         {
-            Destroy(draggingInstance);
-            draggingInstance = null;
-            transform.position = originalPosition;
+            Destroy(draggingInstance);         
         }
+        draggingInstance = null;
     }
 
     private void UpdateUI()

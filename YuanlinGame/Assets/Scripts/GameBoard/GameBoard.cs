@@ -48,21 +48,6 @@ public class GameBoard : MonoBehaviour
 
     }
 
-    //����ש������
-    public void CheckTileState(int num)
-    {
-        for (int t = 0; t < size.x * size.y; t++)
-        {
-            if (tiles[t] != null && tiles[t].State == GameTileState.Disable)
-            {
-                tiles[t].disableGrid();
-            }
-            if (tiles[t] != null && tiles[t].IsSpawnPoint == true)
-            {
-                tiles[t].SetAsSpawnPoint(num);
-            }
-        }
-    }
 
     //����ש�ĸ�������������
     public int[] countNum()
@@ -133,7 +118,7 @@ public class GameBoard : MonoBehaviour
         {
             if(tiles[t] != null)
             {
-                tiles[t].restoreGrid();
+                tiles[t].RestoreGrid();
             }
         }
     }
@@ -165,7 +150,8 @@ public class GameBoard : MonoBehaviour
         Destroy(puzzle.gameObject); // 删除当前场上的拼图
     }
     // 传入想放置物体的世界位置 和 物体的初始位置
-// 返回bool是否允许放置，如果不允许，调用方自己复位物体位置
+    // 返回bool是否允许放置，如果不允许，调用方自己复位物体位置
+    /*
     public bool TryPlaceObjectAt(Vector3 placePosition, Transform objectTransform, Vector3 originalPosition)
     {
         Ray ray = new Ray(placePosition + Vector3.up * 10f, Vector3.down);
@@ -196,5 +182,5 @@ public class GameBoard : MonoBehaviour
         FindObjectOfType<LevelConditionChecker>()?.UpdateConditions();
         return true;
     }
-
+    */
 }

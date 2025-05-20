@@ -158,4 +158,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: ac7328088e5e98d45b58a113f3839a5d, type: 2}
   - {fileID: 2100000, guid: cbf7a887d5ce51a4982603de0e6441e9, type: 2}
   - {fileID: 2100000, guid: a93e6b80194d98b4bb1f6cb37bac0a92, type: 2}
-  tileContentFactory: {fileID: 11400000, guid: bea806fe7fe55134997fe84af0750b7a, type: 2}
+  - {fileID: 2100000, guid: c24c8eeda23da3e49a63b97bf07a6b48, type: 2}
