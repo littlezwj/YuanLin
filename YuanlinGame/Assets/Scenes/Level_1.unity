@@ -166,8 +166,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -542, y: -226}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -542, y: -225.38834}
+  m_SizeDelta: {x: 100, y: 98.7767}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15419385
 MonoBehaviour:
@@ -1999,10 +1999,18 @@ MonoBehaviour:
     requiredCount: 2
     currentCount: 0
     isCompleted: 0
+  - typeTag: "\u56DB\u89D2\u7A97\u6237"
+    requiredCount: 3
+    currentCount: 0
+    isCompleted: 0
+  - typeTag: 
+    requiredCount: 3
+    currentCount: 0
+    isCompleted: 0
   valueCondition:
-    requiredHiddenValue: 2
+    requiredHiddenValue: 3
     requiredElegantValue: 2
-    requiredAgileValue: 2
+    requiredAgileValue: 0
     requiredZenValue: 0
     currentHiddenValue: 0
     currentElegantValue: 0
