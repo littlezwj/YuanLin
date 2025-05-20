@@ -173,23 +173,27 @@ public class GameBoard : MonoBehaviour
 
         if (tile == null)
         {
-            // 不在任何格子，放置失败
-            return false;
+            return false; // 不在任何格子，放置失败
         }
 
         if (tile.Content != null && tile.Content.Type != GameTileContentType.Empty)
         {
-            // 格子被占用，放置失败
-            return false;
+            return false; // 格子被占用，放置失败
         }
 
-        // 格子空闲，放置成功，调整物体位置到格子中心
+        // 放置成功，设置物体位置和格子内容
         objectTransform.position = tile.transform.position + Vector3.up * 0.1f;
 
-        // 这里你可以更新tile.Content状态，表示格子被占用，比如：
-        // tile.Content = new GameTileContent(GameTileContentType.YourObjectType, objectTransform);
-        // 具体根据你的项目改
+        // 确保物体有 GamePuzzle 组件
+        GamePuzzle puzzle = objectTransform.GetComponent<GamePuzzle>();
+        if (puzzle != null)
+        {
+            tile.Content = puzzle; // 将 GamePuzzle 设置为格子的 Content
+            tile.Content.Type = GameTileContentType.Tool; // 设置类型为 Tool
+        }
 
+        // 触发条件检测
+        FindObjectOfType<LevelConditionChecker>()?.UpdateConditions();
         return true;
     }
 

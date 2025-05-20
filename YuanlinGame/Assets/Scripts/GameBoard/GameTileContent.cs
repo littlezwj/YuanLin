@@ -8,13 +8,13 @@ public class GameTileContent : MonoBehaviour
     [SerializeField]
     GameTileContentType type = default;
 
-    //¸ú×ÙÔ­Ê¼¹¤³§£¬¸Ã¹¤³§Ó¦¸ÃÖ»ÉèÖÃÒ»´Î£¬²¢ÒÔÒ»¸ö·½·¨½«×ÔÉí·¢ËÍ»Ø¹¤³§
-    public GameTileContentType Type => type;
+    //ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»Ø¹ï¿½ï¿½ï¿½
+    public GameTileContentType Type { get; set; } // å°† set è®¾ä¸ºå…¬å¼€
 
-    GameTileContentFactory originFactory; //ÎªGameTileContent´´½¨Ò»¸ö¹¤³§£¬¸ù¾ÝÆäÀàÐÍ¼Ó¹¤ÆäÐÎ×´µÈµÈ
+    GameTileContentFactory originFactory; //ÎªGameTileContentï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Ó¹ï¿½ï¿½ï¿½ï¿½ï¿½×´ï¿½Èµï¿½
     public GameTileContentFactory OriginFactory
     {
-        get => originFactory; //½«ÖµÖ¸ÏòoriginFactory
+        get => originFactory; //ï¿½ï¿½ÖµÖ¸ï¿½ï¿½originFactory
         set
         {
             Debug.Assert(originFactory == null, "Redefined origin factory!");

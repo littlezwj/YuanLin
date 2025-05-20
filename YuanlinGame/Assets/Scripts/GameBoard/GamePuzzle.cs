@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class GamePuzzle : MonoBehaviour
+public class GamePuzzle : GameTileContent
 {
     [SerializeField]
     Vector2Int[] shapeOffsets; // 形状偏移格子，比如L形2x2等
@@ -21,6 +21,8 @@ public class GamePuzzle : MonoBehaviour
     private bool isSelected = false;
     [SerializeField]
     public GameBoard gameBoard;
+    // 在 GamePuzzle 类中添加以下属性
+    
 
     public void SetGameBoard(GameBoard board)
     {
@@ -130,37 +132,47 @@ public class GamePuzzle : MonoBehaviour
 
 
     public bool TryPlaceAt(Vector3 worldPosition)
+{
+    Vector3 boardOrigin = gameBoard.transform.position;
+    int halfX = gameBoard.size.x / 2;
+    int halfZ = gameBoard.size.y / 2;
+
+    // 根据中心点和偏移计算目标格子
+    int cx = Mathf.RoundToInt(worldPosition.x - boardOrigin.x);
+    int cz = Mathf.RoundToInt(worldPosition.z - boardOrigin.z);
+
+    List<GameTile> targetTiles = new List<GameTile>();
+    foreach (var offset in shapeOffsets)
     {
-        Vector3 boardOrigin = gameBoard.transform.position;
-        int halfX = gameBoard.size.x / 2;
-        int halfZ = gameBoard.size.y / 2;
-
-        // 根据中心点和偏移计算目标格子
-        int cx = Mathf.RoundToInt(worldPosition.x - boardOrigin.x);
-        int cz = Mathf.RoundToInt(worldPosition.z - boardOrigin.z);
-
-        List<GameTile> targetTiles = new List<GameTile>();
-        foreach (var offset in shapeOffsets)
+        int x = cx + offset.x;
+        int z = cz + offset.y;
+        GameTile tile = gameBoard.GetTileAt(x, z);
+        if (tile == null || tile.State == GameTileState.Disable)
         {
-            int x = cx + offset.x;
-            int z = cz + offset.y;
-            GameTile tile = gameBoard.GetTileAt(x, z);
-            if (tile == null || tile.State == GameTileState.Disable)
-            {
-                return false;
-            }
-            targetTiles.Add(tile);
+            return false;
         }
-
-        // 吸附到目标位置
-        float worldX = boardOrigin.x + cx - gameBoard.xOffset;
-        float worldZ = boardOrigin.z + cz - gameBoard.zOffset;
-        transform.position = new Vector3(worldX, transform.position.y, worldZ);
-
-        occupiedTiles = targetTiles;
-        MarkTilesAsUsed();
-        return true;
+        targetTiles.Add(tile);
     }
+
+    // 吸附到目标位置
+    float worldX = boardOrigin.x + cx - gameBoard.xOffset;
+    float worldZ = boardOrigin.z + cz - gameBoard.zOffset;
+    transform.position = new Vector3(worldX, transform.position.y, worldZ);
+
+    // 设置格子的内容类型为 Tool
+    foreach (GameTile tile in targetTiles)
+    {
+        if (tile.Content != null)
+        {
+            tile.Content.Type = GameTileContentType.Tool; // 在放置物体时设置类型
+        }
+    }
+
+    occupiedTiles = targetTiles;
+    MarkTilesAsUsed();
+    FindObjectOfType<LevelConditionChecker>()?.UpdateConditions(); // 新增调用
+    return true;
+}
 
     private void MarkTilesAsUsed()
     {
