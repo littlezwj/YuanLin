@@ -20,8 +20,6 @@ public class GamePuzzle : MonoBehaviour
     private bool isPlaced = false;
     [SerializeField]
     public GameBoard gameBoard;
-    // 在 GamePuzzle 类中添加以下属性
-    public GameTileContentType Type { get; set; } // 将 set 设为公开
 
     public void SetGameBoard(GameBoard board)
     {
@@ -84,6 +82,22 @@ public class GamePuzzle : MonoBehaviour
             isPlaced = TryPlaceAt();
         }
     }
+    public bool IsInBounds(float centerX, float centerZ)
+    {
+        float bound_x = gameBoard.size.x / 2;
+        float bound_z = gameBoard.size.y / 2;
+        foreach (var offset in shapeOffsets)
+        {
+            float x = centerX + offset.x;
+            float z = centerZ + offset.y;
+
+            if (x < -bound_x || x >= bound_z || z < -bound_z || z >= bound_z)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public void SnapToGrid(Vector3 hit_pos)
     {
@@ -96,9 +110,17 @@ public class GamePuzzle : MonoBehaviour
     Vector3 SnapGridPos(Vector3 hitPoint)
     {
         Vector3 boardOrigin = gameBoard.transform.position;
-        int x = Mathf.RoundToInt(hitPoint.x - boardOrigin.x);
-        int z = Mathf.RoundToInt(hitPoint.z - boardOrigin.z);
-        return new Vector3(boardOrigin.x + x - gameBoard.xOffset, boardOrigin.y, boardOrigin.z + z - gameBoard.zOffset);
+        float x = Mathf.RoundToInt(hitPoint.x - boardOrigin.x) - Mathf.Sign(hitPoint.x) * gameBoard.xOffset;
+        float z = Mathf.RoundToInt(hitPoint.z - boardOrigin.z) - Mathf.Sign(hitPoint.z) * gameBoard.zOffset;
+
+        if (!IsInBounds(x, z))
+        {
+            // 返回一个非法标记位置（例如 Vector3.negativeInfinity）或者维持当前 transform.position
+            return transform.position;
+        }
+
+
+        return new Vector3(boardOrigin.x + x, boardOrigin.y, boardOrigin.z + z);
     }
 
     Vector2 GetBoardOffset()
@@ -182,10 +204,19 @@ public class GamePuzzle : MonoBehaviour
         occupiedTiles = targetTiles;
         MarkTilesAsUsed();
         FindObjectOfType<LevelConditionChecker>()?.UpdateConditions(); // 新增调用
+        Deselect();
         return true;
     }
 
-    private void MarkTilesAsUsed()
+    public void RestoreOccupiedTile()
+    {
+        foreach (GameTile tile in occupiedTiles)
+        {
+            tile.RestoreGrid();
+        }
+    }
+
+    public void MarkTilesAsUsed()
     {
         foreach (GameTile tile in occupiedTiles)
         {
@@ -246,7 +277,7 @@ public class GamePuzzle : MonoBehaviour
     }
 
 
-    void Deselect()
+    public void Deselect()
     {
         isSelected = false;
     //    ClearPreviewTiles();

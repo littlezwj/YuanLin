@@ -44,7 +44,8 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!canDrag || currentUses <= 0) return;
-
+        if (GamePlaceController.Instance)
+            GamePlaceController.Instance.canDrag = false;
         draggingInstance = Instantiate(shapePrefab);
 
         var puzzleInstance = draggingInstance.GetComponent<GamePuzzle>();
@@ -81,6 +82,8 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!canDrag || draggingInstance == null) return;
+        if (GamePlaceController.Instance)
+            GamePlaceController.Instance.canDrag = true;
         var puzzleInstance = draggingInstance.GetComponent<GamePuzzle>();
         if (puzzleInstance == null) return;
         bool placed = puzzleInstance.TryPlaceAt();
