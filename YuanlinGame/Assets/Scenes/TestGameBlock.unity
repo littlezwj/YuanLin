@@ -186,8 +186,10 @@ MonoBehaviour:
   iconImage: {fileID: 954369075}
   nameText: {fileID: 2086178097}
   usesText: {fileID: 1298681670}
-  cardIcon: {fileID: 0}
-  cardName: 
+  hiddenValueText: {fileID: 0}
+  elegantValueText: {fileID: 0}
+  agileValueText: {fileID: 0}
+  zenValueText: {fileID: 0}
 --- !u!4 &33657969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 608255225349427589, guid: d4702350a6607fa4690e72f80692eb48,
@@ -3915,6 +3917,7 @@ MonoBehaviour:
   - {x: 1, y: 0}
   - {x: 0, y: -1}
   - {x: 0, y: 0}
+  deleteUI: {fileID: 0}
   gameBoard: {fileID: 1615531935}
 --- !u!4 &1985791590
 Transform:

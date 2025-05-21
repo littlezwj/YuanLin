@@ -7,7 +7,8 @@ public class GamePuzzle : MonoBehaviour
 {
     [SerializeField]
     Vector2Int[] shapeOffsets; // 形状偏移格子，比如L形2x2等
-
+    [SerializeField]
+    GameObject deleteUI;
     private List<GameTile> occupiedTiles = new List<GameTile>();
     private List<GameTile> previewTiles = new List<GameTile>();
 
@@ -17,9 +18,10 @@ public class GamePuzzle : MonoBehaviour
     // --- 新增，管理当前选中的实例 ---
     //private static GamePuzzle currentSelected = null;
     private bool isSelected = false;
-    private bool isPlaced = false;
+    private bool canDelete = false;
     [SerializeField]
     public GameBoard gameBoard;
+    public ShapeCard m_card;
 
     public void SetGameBoard(GameBoard board)
     {
@@ -34,28 +36,60 @@ public class GamePuzzle : MonoBehaviour
         // 确保shapeOffsets独立，不引用外部传入的数组（若是外部SetShape调用）
         if(shapeOffsets != null)
             SetShape(shapeOffsets);
+        if (!deleteUI.activeSelf)
+            deleteUI.SetActive(false);
     }
 
     void Update()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                if(hit.collider.gameObject == this.gameObject)
+                {
+                    canDelete = !canDelete;
+                    deleteUI.SetActive(canDelete);
+                }
+                
+            }
+        }
+
         if (!isSelected) return; // 只有选中物体才响应输入
 
         HandleRotation();
         //HandlePlace();
+        
+    }
+
+    public void DeletePuzzle()
+    {
+        if (m_card)
+        {
+            m_card.gameObject.SetActive(true);
+            m_card.currentUses++;
+            m_card.UpdateUI();
+        }       
+        RestoreOccupiedTile();
+        if (gameBoard.gamePuzzles.Contains(this))
+            gameBoard.gamePuzzles.Remove(this);
+        FindObjectOfType<LevelConditionChecker>()?.UpdateConditions(); // 新增调用
+        Destroy(this.gameObject);
     }
 
     void HandleRotation()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetMouseButtonDown(1))
         {
             transform.Rotate(Vector3.up, -90f);
             UpdateShapeRotation(-90);
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            transform.Rotate(Vector3.up, 90f);
-            UpdateShapeRotation(90);
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    transform.Rotate(Vector3.up, 90f);
+        //    UpdateShapeRotation(90);
+        //}
     }
 
     void HandlePlace()
@@ -79,7 +113,7 @@ public class GamePuzzle : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;           
-            isPlaced = TryPlaceAt();
+            //isPlaced = TryPlaceAt();
         }
     }
     public bool IsInBounds(float centerX, float centerZ)
