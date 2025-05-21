@@ -17,13 +17,17 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 
     private bool canDrag = true;
 
-    // ĞÂÔö UI ÔªËØ£¨Í¨¹ı Inspector ¸³Öµ£©
+    // ï¿½ï¿½ï¿½ï¿½ UI Ôªï¿½Ø£ï¿½Í¨ï¿½ï¿½ Inspector ï¿½ï¿½Öµï¿½ï¿½
     public Image iconImage;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI usesText;
+    public TextMeshProUGUI hiddenValueText;
+    public TextMeshProUGUI elegantValueText;
+    public TextMeshProUGUI agileValueText;
+    public TextMeshProUGUI zenValueText;
 
-    public Sprite cardIcon;
-    public string cardName;
+    
+
 
     private void Awake()
     {
@@ -31,13 +35,13 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         gameBoard = FindObjectOfType<GameBoard>();
         currentUses = maxUses;
 
-        // ¸æËß GameBoard£ºÎÒÊÇÄÇ¸ö ShapeCard£¡
+        // ï¿½ï¿½ï¿½ï¿½ GameBoardï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ShapeCardï¿½ï¿½
         if (gameBoard != null)
         {
             gameBoard.shapeCardRef = this;
         }
 
-        UpdateUI(); // ÏÔÊ¾ÈİÁ¿µÈ
+        UpdateUI(); // ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
 
@@ -107,9 +111,27 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 
     private void UpdateUI()
     {
-        if (iconImage != null) iconImage.sprite = cardIcon;
-        if (nameText != null) nameText.text = cardName;
-        if (usesText != null) usesText.text = "x" + currentUses.ToString();
+        if (usesText != null) usesText.text = currentUses.ToString();
+
+        // æ›´æ–° ItemParameters çš„å€¼å’Œå›¾ç‰‡
+        if (shapePrefab != null)
+        {
+            var itemParams = shapePrefab.GetComponent<ItemParameters>();
+            if (itemParams != null)
+            {
+                if (nameText != null) nameText.text = itemParams.typeTag;
+                if (hiddenValueText != null) hiddenValueText.text = ((int)itemParams.hiddenValue).ToString();
+                if (elegantValueText != null) elegantValueText.text = ((int)itemParams.elegantValue).ToString();
+                if (agileValueText != null) agileValueText.text = ((int)itemParams.agileValue).ToString();
+                if (zenValueText != null) zenValueText.text = ((int)itemParams.zenValue).ToString();
+                
+                // åŒæ­¥ ItemParameters ä¸­çš„ image åˆ° iconImage
+                if (iconImage != null && itemParams.itemSprite != null)
+                {
+                    iconImage.sprite = itemParams.itemSprite;
+                }
+            }
+        }
     }
 
     public void RecoverOneUse()

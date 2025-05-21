@@ -367,16 +367,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b527742b2ed84254f88fb7ef75576ed6, type: 2}
-  m_sharedMaterial: {fileID: 8505744419609916320, guid: b527742b2ed84254f88fb7ef75576ed6,
+  m_fontAsset: {fileID: 11400000, guid: 87649617facdc1f4c94c38f2087f2adc, type: 2}
+  m_sharedMaterial: {fileID: 8505744419609916320, guid: 87649617facdc1f4c94c38f2087f2adc,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -445,7 +445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6932322283679312810}
   m_Layer: 5
-  m_Name: Values (1)
+  m_Name: elegantValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,7 +860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7328478805248298722}
   m_Layer: 5
-  m_Name: Values
+  m_Name: hiddenValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1032,16 +1032,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b527742b2ed84254f88fb7ef75576ed6, type: 2}
-  m_sharedMaterial: {fileID: 8505744419609916320, guid: b527742b2ed84254f88fb7ef75576ed6,
+  m_fontAsset: {fileID: 11400000, guid: 87649617facdc1f4c94c38f2087f2adc, type: 2}
+  m_sharedMaterial: {fileID: 8505744419609916320, guid: 87649617facdc1f4c94c38f2087f2adc,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1110,7 +1110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3873969063884966135}
   m_Layer: 5
-  m_Name: Values (3)
+  m_Name: zenValueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1207,16 +1207,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b527742b2ed84254f88fb7ef75576ed6, type: 2}
-  m_sharedMaterial: {fileID: 8505744419609916320, guid: b527742b2ed84254f88fb7ef75576ed6,
+  m_fontAsset: {fileID: 11400000, guid: 87649617facdc1f4c94c38f2087f2adc, type: 2}
+  m_sharedMaterial: {fileID: 8505744419609916320, guid: 87649617facdc1f4c94c38f2087f2adc,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1942,16 +1942,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b527742b2ed84254f88fb7ef75576ed6, type: 2}
-  m_sharedMaterial: {fileID: 8505744419609916320, guid: b527742b2ed84254f88fb7ef75576ed6,
+  m_fontAsset: {fileID: 11400000, guid: 87649617facdc1f4c94c38f2087f2adc, type: 2}
+  m_sharedMaterial: {fileID: 8505744419609916320, guid: 87649617facdc1f4c94c38f2087f2adc,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2095,7 +2095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4939599977026871031}
   m_Layer: 5
-  m_Name: Values (2)
+  m_Name: agileValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

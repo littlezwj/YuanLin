@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class LevelConditionChecker : MonoBehaviour
 {
@@ -41,6 +43,19 @@ public class LevelConditionChecker : MonoBehaviour
 
     private GameBoard gameBoard;
 
+    [Header("UI References")]
+    public TMPro.TextMeshProUGUI hiddenValueText;
+    public TMPro.TextMeshProUGUI elegantValueText;
+    public TMPro.TextMeshProUGUI agileValueText;
+    public TMPro.TextMeshProUGUI zenValueText;
+    public Image hiddenValueFill;
+    public Image elegantValueFill;
+    public Image agileValueFill;
+    public Image zenValueFill;
+
+
+
+
     private void Awake()
     {
         gameBoard = FindObjectOfType<GameBoard>();
@@ -48,6 +63,37 @@ public class LevelConditionChecker : MonoBehaviour
         {
             Debug.LogError("GameBoard not found in the scene!");
         }
+
+        // Initialize UI to 0 on game load
+        InitializeUI();
+    }
+    private void InitializeUI()
+    {
+        // Set all text to "0"
+        hiddenValueText.text = "0";
+        elegantValueText.text = "0";
+        agileValueText.text = "0";
+        zenValueText.text = "0";
+
+        // Set all fill images to 0
+        hiddenValueFill.fillAmount = 0;
+        elegantValueFill.fillAmount = 0;
+        agileValueFill.fillAmount = 0;
+        zenValueFill.fillAmount = 0;
+    }
+    private void UpdateUI()
+    {
+        // Update Text (only current value)
+        hiddenValueText.text = $"{valueCondition.currentHiddenValue}";
+        elegantValueText.text = $"{valueCondition.currentElegantValue}";
+        agileValueText.text = $"{valueCondition.currentAgileValue}";
+        zenValueText.text = $"{valueCondition.currentZenValue}";
+
+        // Update Fill Images (normalized to 0-1 range, assuming 8 is the max)
+        hiddenValueFill.fillAmount = Mathf.Clamp01(valueCondition.currentHiddenValue / 8f);
+        elegantValueFill.fillAmount = Mathf.Clamp01(valueCondition.currentElegantValue / 8f);
+        agileValueFill.fillAmount = Mathf.Clamp01(valueCondition.currentAgileValue / 8f);
+        zenValueFill.fillAmount = Mathf.Clamp01(valueCondition.currentZenValue / 8f);
     }
 
     // 当物体被放置或移除时调用此方法
@@ -74,7 +120,7 @@ public class LevelConditionChecker : MonoBehaviour
         if (tile == null || tile.Content == null) continue;
 
         // 检测 Tag 条件
-        if (tile.Content.Type == GameTileContentType.Tool)
+        if (tile.state == GameTileState.Occupied)
         {
             ItemParameters itemParams = tile.Content.GetComponent<ItemParameters>();
             if (itemParams != null)
@@ -105,6 +151,8 @@ public class LevelConditionChecker : MonoBehaviour
         valueCondition.currentAgileValue >= valueCondition.requiredAgileValue &&
         valueCondition.currentZenValue >= valueCondition.requiredZenValue;
 
+        // 更新UI
+    UpdateUI();
     // 调试输出
     Debug.Log($"数值总和 - 隐逸: {valueCondition.currentHiddenValue}/{valueCondition.requiredHiddenValue}, 清雅: {valueCondition.currentElegantValue}/{valueCondition.requiredElegantValue}, 灵动: {valueCondition.currentAgileValue}/{valueCondition.requiredAgileValue}, 禅意: {valueCondition.currentZenValue}/{valueCondition.requiredZenValue}");
 }
