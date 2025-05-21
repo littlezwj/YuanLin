@@ -8,6 +8,7 @@ public class GamePlaceController : MonoBehaviour
     public bool canDrag = false;
     private GamePuzzle selectedPuzzle = null;
     private Vector3 origin_puzzle_pos = Vector3.zero;
+    private float origin_angle = 0;
     protected virtual void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,6 +43,7 @@ public class GamePlaceController : MonoBehaviour
                 {
                     selectedPuzzle.Select();
                     origin_puzzle_pos = selectedPuzzle.transform.position;
+                    origin_angle = selectedPuzzle.transform.rotation.eulerAngles.y;
                     selectedPuzzle.RestoreOccupiedTile();
                 }
             }
@@ -67,6 +69,9 @@ public class GamePlaceController : MonoBehaviour
                     if (!placed)
                     {
                         selectedPuzzle.transform.position = origin_puzzle_pos;
+                        float angle_offset = origin_angle - selectedPuzzle.transform.rotation.eulerAngles.y;
+                        selectedPuzzle.transform.Rotate(Vector3.up, angle_offset);
+                        selectedPuzzle.UpdateShapeRotation(angle_offset);
                         selectedPuzzle.MarkTilesAsUsed();
                         selectedPuzzle.Deselect();
                     }

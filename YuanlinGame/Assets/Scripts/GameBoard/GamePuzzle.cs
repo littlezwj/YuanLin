@@ -224,7 +224,7 @@ public class GamePuzzle : MonoBehaviour
         }
     }
 
-    void UpdateShapeRotation(float angle)
+    public void UpdateShapeRotation(float angle)
     {        
         for (int i = 0; i < shapeOffsets.Length; i++)
         {
