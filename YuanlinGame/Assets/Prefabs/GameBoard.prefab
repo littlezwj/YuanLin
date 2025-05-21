@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2418231211733718322
 Transform:
   m_ObjectHideFlags: 0
@@ -152,5 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 2418231211733718322}
+  size: {x: 0, y: 0}
+  shapeCardRef: {fileID: 0}
   tilePrefab: {fileID: 608255225349427588, guid: d4702350a6607fa4690e72f80692eb48,
     type: 3}
+  xOffset: 0
+  zOffset: 0

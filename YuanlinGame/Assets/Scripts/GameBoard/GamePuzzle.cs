@@ -203,6 +203,8 @@ public class GamePuzzle : MonoBehaviour
 
         occupiedTiles = targetTiles;
         MarkTilesAsUsed();
+        if (!gameBoard.gamePuzzles.Contains(this))
+            gameBoard.gamePuzzles.Add(this);
         FindObjectOfType<LevelConditionChecker>()?.UpdateConditions(); // 新增调用
         Deselect();
         return true;

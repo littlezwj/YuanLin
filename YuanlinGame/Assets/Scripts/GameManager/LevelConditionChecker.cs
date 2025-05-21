@@ -98,33 +98,28 @@ public class LevelConditionChecker : MonoBehaviour
 
     // 当物体被放置或移除时调用此方法
     public void UpdateConditions()
-{
-    // 重置 Tag 条件
-    foreach (var condition in tagConditions)
     {
-        condition.currentCount = 0;
-        condition.isCompleted = false;
-    }
-
-    // 重置数值条件
-    valueCondition.currentHiddenValue = 0;
-    valueCondition.currentElegantValue = 0;
-    valueCondition.currentAgileValue = 0;
-    valueCondition.currentZenValue = 0;
-    valueCondition.isCompleted = false;
-
-    // 遍历所有格子
-    for (int i = 0; i < gameBoard.size.x * gameBoard.size.y; i++)
-    {
-        GameTile tile = gameBoard.GetTileAt(i % gameBoard.size.x, i / gameBoard.size.x);
-        if (tile == null || tile.Content == null) continue;
-
-        // 检测 Tag 条件
-        if (tile.state == GameTileState.Occupied)
+        // 重置 Tag 条件
+        foreach (var condition in tagConditions)
         {
-            ItemParameters itemParams = tile.Content.GetComponent<ItemParameters>();
-            if (itemParams != null)
+            condition.currentCount = 0;
+            condition.isCompleted = false;
+        }
+
+        // 重置数值条件
+        valueCondition.currentHiddenValue = 0;
+        valueCondition.currentElegantValue = 0;
+        valueCondition.currentAgileValue = 0;
+        valueCondition.currentZenValue = 0;
+        valueCondition.isCompleted = false;
+
+        if(gameBoard.gamePuzzles.Count > 0)
+        {
+            foreach(GamePuzzle puzzle in gameBoard.gamePuzzles)
             {
+                if (!puzzle.GetComponent<ItemParameters>())
+                    continue;
+                ItemParameters itemParams = puzzle.GetComponent<ItemParameters>();
                 // 更新 Tag 条件
                 foreach (var condition in tagConditions)
                 {
@@ -142,20 +137,50 @@ public class LevelConditionChecker : MonoBehaviour
                 valueCondition.currentZenValue += itemParams.zenValue;
             }
         }
+        /*
+        // 遍历所有格子
+        for (int i = 0; i < gameBoard.size.x * gameBoard.size.y; i++)
+        {
+            GameTile tile = gameBoard.GetTileAt(i % gameBoard.size.x, i / gameBoard.size.x);
+            if (tile == null || tile.Content == null) continue;
+
+            // 检测 Tag 条件
+            if (tile.state == GameTileState.Occupied)
+            {
+                ItemParameters itemParams = tile.Content.GetComponent<ItemParameters>();
+                if (itemParams != null)
+                {
+                    // 更新 Tag 条件
+                    foreach (var condition in tagConditions)
+                    {
+                        if (itemParams.typeTag == condition.typeTag)
+                        {
+                            condition.currentCount++;
+                            condition.isCompleted = condition.currentCount >= condition.requiredCount;
+                        }
+                    }
+
+                    // 累加数值
+                    valueCondition.currentHiddenValue += itemParams.hiddenValue;
+                    valueCondition.currentElegantValue += itemParams.elegantValue;
+                    valueCondition.currentAgileValue += itemParams.agileValue;
+                    valueCondition.currentZenValue += itemParams.zenValue;
+                }
+            }
+        }
+        */
+        // 检查数值条件
+        valueCondition.isCompleted =
+            valueCondition.currentHiddenValue >= valueCondition.requiredHiddenValue &&
+            valueCondition.currentElegantValue >= valueCondition.requiredElegantValue &&
+            valueCondition.currentAgileValue >= valueCondition.requiredAgileValue &&
+            valueCondition.currentZenValue >= valueCondition.requiredZenValue;
+
+            // 更新UI
+        UpdateUI();
+        // 调试输出
+        Debug.Log($"数值总和 - 隐逸: {valueCondition.currentHiddenValue}/{valueCondition.requiredHiddenValue}, 清雅: {valueCondition.currentElegantValue}/{valueCondition.requiredElegantValue}, 灵动: {valueCondition.currentAgileValue}/{valueCondition.requiredAgileValue}, 禅意: {valueCondition.currentZenValue}/{valueCondition.requiredZenValue}");
     }
-
-    // 检查数值条件
-    valueCondition.isCompleted =
-        valueCondition.currentHiddenValue >= valueCondition.requiredHiddenValue &&
-        valueCondition.currentElegantValue >= valueCondition.requiredElegantValue &&
-        valueCondition.currentAgileValue >= valueCondition.requiredAgileValue &&
-        valueCondition.currentZenValue >= valueCondition.requiredZenValue;
-
-        // 更新UI
-    UpdateUI();
-    // 调试输出
-    Debug.Log($"数值总和 - 隐逸: {valueCondition.currentHiddenValue}/{valueCondition.requiredHiddenValue}, 清雅: {valueCondition.currentElegantValue}/{valueCondition.requiredElegantValue}, 灵动: {valueCondition.currentAgileValue}/{valueCondition.requiredAgileValue}, 禅意: {valueCondition.currentZenValue}/{valueCondition.requiredZenValue}");
-}
 
     // 检查所有条件是否完成
     public bool AreAllConditionsMet()

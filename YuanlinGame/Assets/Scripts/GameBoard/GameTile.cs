@@ -79,49 +79,6 @@ public class GameTile : MonoBehaviour
         }
     }
 
-    //-------------内容物-------------
-    GameTileContent content; //内容物也是瓷砖的属性之一
-
-    [SerializeField]
-    //GameTileContentFactory tileContentFactory = default;
-
-    public GameTileContent Content
-    {
-        get => content; //content本来是私有变量 这样写可以用GameTile.Content的方式访问到它
-        set
-        {
-            if (content != null)
-            {
-                content.Recycle();
-            }
-            Debug.Assert(value != null, "Null assigned to content!");
-            content = value;
-            content.transform.localPosition = transform.localPosition;
-        }
-    }
-
-    /*
-    public void SetAsSpawnPoint(int num)
-    {
-        Content = tileContentFactory.Get(GameTileContentType.SpawnPoint, num);
-    }
-
-    public void PlaceContent(int[] nums)
-    {
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            Content = tileContentFactory.Get(GameTileContentType.Destination, nums[1]);
-        }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            Content = tileContentFactory.Get(GameTileContentType.Tool, nums[2]);
-        }
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            Content = tileContentFactory.Get(GameTileContentType.Empty, nums[0]);
-        }
-    }
-    */
     // Start is called before the first frame update
     void Start()
     {

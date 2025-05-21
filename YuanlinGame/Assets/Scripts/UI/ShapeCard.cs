@@ -93,7 +93,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         bool placed = puzzleInstance.TryPlaceAt();
 
         if (placed)
-        {
+        {            
             currentUses--;
             UpdateUI();
 

@@ -17,8 +17,10 @@ public class GameBoard : MonoBehaviour
     public float xOffset;
     public float zOffset;
 
+    public List<GamePuzzle> gamePuzzles = new List<GamePuzzle>();
     public void Initialized()
     {
+        gamePuzzles.Clear();
         //this.size = size;
         tiles = new GameTile[size.x * size.y];
         ground.localScale = new Vector3(size.x, size.y, 1f);
@@ -46,39 +48,6 @@ public class GameBoard : MonoBehaviour
             tiles[index] = tile;
         }
 
-    }
-
-
-    //����ש�ĸ�������������
-    public int[] countNum()
-    {
-        int[] counts = { 0, 0, 0, 0 };
-        for (int t = 0; t < size.x * size.y; t++)
-        {
-            if (tiles[t] != null && tiles[t].Content != null)
-            {
-                switch (tiles[t].Content.Type)
-                {
-                    case GameTileContentType.Empty: 
-                        counts[0] += 1;
-                        break;
-                    case GameTileContentType.Destination:
-                        counts[1] += 1;
-                        break;
-                    case GameTileContentType.Tool:
-                        counts[2] += 1;
-                        break;
-                    case GameTileContentType.SpawnPoint:
-                        counts[3] += 1;
-                        break;
-                }
-            }
-        }
-        print("empty: " + counts[0]);
-        print("des: " + counts[1]);
-        print("tool: " + counts[2]);
-        print("spp: " + counts[3]);
-        return counts;
     }
 
     public GameTile GetTileAt(int x, int z)

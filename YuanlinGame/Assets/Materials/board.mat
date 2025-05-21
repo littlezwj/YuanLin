@@ -28,7 +28,7 @@ Material:
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
@@ -117,7 +117,7 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _CloudSpeed: 0.85
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -150,9 +150,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Vector2_e47180b58f4140cfab7eb0edefe1a141: {r: 4.6, g: 6.6, b: 0, a: 0}
-    - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 0.93725497, g: 0.8980393, b: 0.80392164, a: 1}
     - _CloudColor: {r: 0.7529412, g: 0.6862745, b: 0.14509805, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.93725497, g: 0.8980393, b: 0.80392164, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColorTone: {r: 0.6039216, g: 0.9529412, b: 0.8664526, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
