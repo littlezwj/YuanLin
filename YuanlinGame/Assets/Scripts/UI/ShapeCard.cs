@@ -17,7 +17,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 
     private bool canDrag = true;
 
-    // ï¿½ï¿½ï¿½ï¿½ UI Ôªï¿½Ø£ï¿½Í¨ï¿½ï¿½ Inspector ï¿½ï¿½Öµï¿½ï¿½
+    // ???? UI ??????? Inspector ?????
     public Image iconImage;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI usesText;
@@ -37,13 +37,13 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         gameBoard = FindObjectOfType<GameBoard>();
         currentUses = maxUses;
 
-        // ï¿½ï¿½ï¿½ï¿½ GameBoardï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ShapeCardï¿½ï¿½
+        // ???? GameBoard????????? ShapeCard??
         if (gameBoard != null)
         {
             gameBoard.shapeCardRef = this;
         }
 
-        UpdateUI(); // ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        UpdateUI(); // ?????????
     }
 
 
@@ -116,7 +116,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     {
         if (usesText != null) usesText.text = currentUses.ToString();
 
-        // æ›´æ–° ItemParameters çš„å€¼å’Œå›¾ç‰‡
+        // ¸üĞÂ ItemParameters µÄÖµºÍÍ¼Æ¬
         if (shapePrefab != null)
         {
             var itemParams = shapePrefab.GetComponent<ItemParameters>();
@@ -127,9 +127,9 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 if (elegantValueText != null) elegantValueText.text = ((int)itemParams.elegantValue).ToString();
                 if (agileValueText != null) agileValueText.text = ((int)itemParams.agileValue).ToString();
                 if (zenValueText != null) zenValueText.text = ((int)itemParams.zenValue).ToString();
-                if (costText != null) costText.text = itemParams.cost.ToString(); // æ›´æ–°æˆæœ¬ä»·æ ¼æ–‡æœ¬
+                if (costText != null) costText.text = itemParams.cost.ToString(); // ¸üĞÂ³É±¾¼Û¸ñÎÄ±¾
                 
-                // åŒæ­¥ ItemParameters ä¸­çš„ image åˆ° iconImage
+                // Í¬²½ ItemParameters ÖĞµÄ image µ½ iconImage
                 if (iconImage != null && itemParams.itemSprite != null)
                 {
                     iconImage.sprite = itemParams.itemSprite;
