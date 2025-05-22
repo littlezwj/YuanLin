@@ -9,7 +9,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 {
     public GameObject shapePrefab;
     public int maxUses = 2;
-    private int currentUses;
+    public int currentUses;
 
     private GameObject draggingInstance;
     private Canvas canvas;
@@ -25,6 +25,8 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public TextMeshProUGUI elegantValueText;
     public TextMeshProUGUI agileValueText;
     public TextMeshProUGUI zenValueText;
+
+    public TextMeshProUGUI costText; 
 
     
 
@@ -55,6 +57,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         var puzzleInstance = draggingInstance.GetComponent<GamePuzzle>();
         if (puzzleInstance != null)
         {
+            puzzleInstance.m_card = this;
             puzzleInstance.SetGameBoard(gameBoard);
             puzzleInstance.Select();
         }
@@ -109,7 +112,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         draggingInstance = null;
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if (usesText != null) usesText.text = currentUses.ToString();
 
@@ -124,6 +127,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 if (elegantValueText != null) elegantValueText.text = ((int)itemParams.elegantValue).ToString();
                 if (agileValueText != null) agileValueText.text = ((int)itemParams.agileValue).ToString();
                 if (zenValueText != null) zenValueText.text = ((int)itemParams.zenValue).ToString();
+                if (costText != null) costText.text = itemParams.cost.ToString(); // 更新成本价格文本
                 
                 // 同步 ItemParameters 中的 image 到 iconImage
                 if (iconImage != null && itemParams.itemSprite != null)

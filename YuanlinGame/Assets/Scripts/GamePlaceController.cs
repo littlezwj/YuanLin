@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GamePlaceController : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class GamePlaceController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
@@ -49,6 +51,7 @@ public class GamePlaceController : MonoBehaviour
             }
             if (Input.GetMouseButton(0))
             {
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
                 if (selectedPuzzle != null)
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -63,6 +66,7 @@ public class GamePlaceController : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
                 if (selectedPuzzle != null)
                 {
                     bool placed = selectedPuzzle.TryPlaceAt();
