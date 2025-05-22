@@ -14,28 +14,34 @@ public class LevelConditionChecker : MonoBehaviour
         public int currentCount; // 当前数量
         [SerializeField]
         public bool isCompleted; // 是否完成（显示为勾选框）
+        [TextArea]
+        public string description; // 任务描述文本
+        public int rewardAmount; // 完成任务后的奖励金额
     }
 
     [System.Serializable]
-public class ValueCondition
-{
-    public float requiredHiddenValue; // 需要的隐逸值总和
-    public float requiredElegantValue; // 需要的清雅值总和
-    public float requiredAgileValue;   // 需要的灵动值总和
-    public float requiredZenValue;     // 需要的禅意值总和
-    [HideInInspector]
-    public float currentHiddenValue;   // 当前隐逸值总和
-    [HideInInspector]
-    public float currentElegantValue;  // 当前清雅值总和
-    [HideInInspector]
-    public float currentAgileValue;    // 当前灵动值总和
-    [HideInInspector]
-    public float currentZenValue;      // 当前禅意值总和
-    [HideInInspector]
-    public int currentCost;            // 当前 cost 总和
-    [SerializeField]
-    public bool isCompleted;           // 是否完成（显示为勾选框）
-}
+    public class ValueCondition
+    {
+        public float requiredHiddenValue; // 需要的隐逸值总和
+        public float requiredElegantValue; // 需要的清雅值总和
+        public float requiredAgileValue;   // 需要的灵动值总和
+        public float requiredZenValue;     // 需要的禅意值总和
+        [HideInInspector]
+        public float currentHiddenValue;   // 当前隐逸值总和
+        [HideInInspector]
+        public float currentElegantValue;  // 当前清雅值总和
+        [HideInInspector]
+        public float currentAgileValue;    // 当前灵动值总和
+        [HideInInspector]
+        public float currentZenValue;      // 当前禅意值总和
+        [HideInInspector]
+        public int currentCost;            // 当前 cost 总和
+        [SerializeField]
+        public bool isCompleted;           // 是否完成（显示为勾选框）
+        [TextArea]
+        public string description; // 任务描述文本
+        public int rewardAmount; // 完成任务后的奖励金额
+    }
 
     [Header("类型 Tag 检测条件")]
     public List<TagCondition> tagConditions = new List<TagCondition>();
@@ -85,14 +91,29 @@ public class ValueCondition
         agileValueFill.fillAmount = 0;
         zenValueFill.fillAmount = 0;
     }
-    private void UpdateUI()
+   private void UpdateUI()
     {
         // Update Text (only current value)
         hiddenValueText.text = $"{valueCondition.currentHiddenValue}";
         elegantValueText.text = $"{valueCondition.currentElegantValue}";
         agileValueText.text = $"{valueCondition.currentAgileValue}";
         zenValueText.text = $"{valueCondition.currentZenValue}";
-        if (costText != null) costText.text = $"{valueCondition.currentCost}"; // 更新 cost 文本
+
+        // 计算已完成任务的奖励总和
+        int totalReward = 0;
+        foreach (var condition in tagConditions)
+        {
+            if (condition.isCompleted)
+            {
+                totalReward += condition.rewardAmount;
+            }
+        }
+
+        // 更新 costText 显示：成本总和 + 奖励总和
+        if (costText != null)
+        {
+            costText.text = $"{valueCondition.currentCost}+{totalReward}";
+        }
 
         // Update Fill Images (normalized to 0-1 range, assuming 8 is the max)
         hiddenValueFill.fillAmount = Mathf.Clamp01(valueCondition.currentHiddenValue / 8f);
