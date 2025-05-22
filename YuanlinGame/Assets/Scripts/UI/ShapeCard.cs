@@ -26,6 +26,8 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     public TextMeshProUGUI agileValueText;
     public TextMeshProUGUI zenValueText;
 
+    public TextMeshProUGUI costText; 
+
     
 
 
@@ -125,6 +127,7 @@ public class ShapeCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 if (elegantValueText != null) elegantValueText.text = ((int)itemParams.elegantValue).ToString();
                 if (agileValueText != null) agileValueText.text = ((int)itemParams.agileValue).ToString();
                 if (zenValueText != null) zenValueText.text = ((int)itemParams.zenValue).ToString();
+                if (costText != null) costText.text = itemParams.cost.ToString(); // 更新成本价格文本
                 
                 // 同步 ItemParameters 中的 image 到 iconImage
                 if (iconImage != null && itemParams.itemSprite != null)
