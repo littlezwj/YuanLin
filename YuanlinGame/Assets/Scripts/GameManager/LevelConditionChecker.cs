@@ -36,10 +36,14 @@ public class LevelConditionChecker : MonoBehaviour
         public float currentZenValue;      // 当前禅意值总和
         [HideInInspector]
         public int currentCost;            // 当前 cost 总和
+        [HideInInspector]
+        public int reward;
         [SerializeField]
         public bool isCompleted;           // 是否完成（显示为勾选框）
         public int rewardAmount; // 完成任务后的奖励金额
     }
+
+    public string levelName = "Level 1";
 
     [Header("类型 Tag 检测条件")]
     public List<TagCondition> tagConditions = new List<TagCondition>();
@@ -60,11 +64,18 @@ public class LevelConditionChecker : MonoBehaviour
     public Image agileValueFill;
     public Image zenValueFill;
 
-
+    public static LevelConditionChecker Instance { get; private set; }
 
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // 防止重复单例
+            return;
+        }
+        Instance = this;
+
         gameBoard = FindObjectOfType<GameBoard>();
         if (gameBoard == null)
         {
@@ -119,6 +130,9 @@ public class LevelConditionChecker : MonoBehaviour
             costText.text = $"{valueCondition.currentCost}+{totalReward}";
         }
 
+        // 更新reward值
+        valueCondition.reward = totalReward;
+
         // Update Fill Images (normalized to 0-1 range, assuming 8 is the max)
         hiddenValueFill.fillAmount = Mathf.Clamp01(valueCondition.currentHiddenValue / 8f);
         elegantValueFill.fillAmount = Mathf.Clamp01(valueCondition.currentElegantValue / 8f);
@@ -128,60 +142,60 @@ public class LevelConditionChecker : MonoBehaviour
 
     // 当物体被放置或移除时调用此方法
     public void UpdateConditions()
-{
-    // 重置 Tag 条件
-    foreach (var condition in tagConditions)
     {
-        condition.currentCount = 0;
-        condition.isCompleted = false;
-    }
-
-    // 重置数值条件
-    valueCondition.currentHiddenValue = 0;
-    valueCondition.currentElegantValue = 0;
-    valueCondition.currentAgileValue = 0;
-    valueCondition.currentZenValue = 0;
-    valueCondition.currentCost = 0; // 重置 cost 总和
-    valueCondition.isCompleted = false;
-
-    if (gameBoard.gamePuzzles.Count > 0)
-    {
-        foreach (GamePuzzle puzzle in gameBoard.gamePuzzles)
+        // 重置 Tag 条件
+        foreach (var condition in tagConditions)
         {
-            if (!puzzle.GetComponent<ItemParameters>())
-                continue;
-            ItemParameters itemParams = puzzle.GetComponent<ItemParameters>();
-            // 更新 Tag 条件
-            foreach (var condition in tagConditions)
-            {
-                if (itemParams.typeTag == condition.typeTag)
-                {
-                    condition.currentCount++;
-                    condition.isCompleted = condition.currentCount >= condition.requiredCount;
-                }
-            }
-
-            // 累加数值
-            valueCondition.currentHiddenValue += itemParams.hiddenValue;
-            valueCondition.currentElegantValue += itemParams.elegantValue;
-            valueCondition.currentAgileValue += itemParams.agileValue;
-            valueCondition.currentZenValue += itemParams.zenValue;
-            valueCondition.currentCost += itemParams.cost; // 累加 cost
+            condition.currentCount = 0;
+            condition.isCompleted = false;
         }
+
+        // 重置数值条件
+        valueCondition.currentHiddenValue = 0;
+        valueCondition.currentElegantValue = 0;
+        valueCondition.currentAgileValue = 0;
+        valueCondition.currentZenValue = 0;
+        valueCondition.currentCost = 0; // 重置 cost 总和
+        valueCondition.isCompleted = false;
+
+        if (gameBoard.gamePuzzles.Count > 0)
+        {
+            foreach (GamePuzzle puzzle in gameBoard.gamePuzzles)
+            {
+                if (!puzzle.GetComponent<ItemParameters>())
+                    continue;
+                ItemParameters itemParams = puzzle.GetComponent<ItemParameters>();
+                // 更新 Tag 条件
+                foreach (var condition in tagConditions)
+                {
+                    if (itemParams.typeTag == condition.typeTag)
+                    {
+                        condition.currentCount++;
+                        condition.isCompleted = condition.currentCount >= condition.requiredCount;
+                    }
+                }
+
+                // 累加数值
+                valueCondition.currentHiddenValue += itemParams.hiddenValue;
+                valueCondition.currentElegantValue += itemParams.elegantValue;
+                valueCondition.currentAgileValue += itemParams.agileValue;
+                valueCondition.currentZenValue += itemParams.zenValue;
+                valueCondition.currentCost += itemParams.cost; // 累加 cost
+            }
+        }
+
+        // 检查数值条件
+        valueCondition.isCompleted =
+            valueCondition.currentHiddenValue >= valueCondition.requiredHiddenValue &&
+            valueCondition.currentElegantValue >= valueCondition.requiredElegantValue &&
+            valueCondition.currentAgileValue >= valueCondition.requiredAgileValue &&
+            valueCondition.currentZenValue >= valueCondition.requiredZenValue;
+
+        // 更新UI
+        UpdateUI();
+        // 调试输出
+        Debug.Log($"数值总和 - 隐逸: {valueCondition.currentHiddenValue}/{valueCondition.requiredHiddenValue}, 清雅: {valueCondition.currentElegantValue}/{valueCondition.requiredElegantValue}, 灵动: {valueCondition.currentAgileValue}/{valueCondition.requiredAgileValue}, 禅意: {valueCondition.currentZenValue}/{valueCondition.requiredZenValue}, 成本: {valueCondition.currentCost}");
     }
-
-    // 检查数值条件
-    valueCondition.isCompleted =
-        valueCondition.currentHiddenValue >= valueCondition.requiredHiddenValue &&
-        valueCondition.currentElegantValue >= valueCondition.requiredElegantValue &&
-        valueCondition.currentAgileValue >= valueCondition.requiredAgileValue &&
-        valueCondition.currentZenValue >= valueCondition.requiredZenValue;
-
-    // 更新UI
-    UpdateUI();
-    // 调试输出
-    Debug.Log($"数值总和 - 隐逸: {valueCondition.currentHiddenValue}/{valueCondition.requiredHiddenValue}, 清雅: {valueCondition.currentElegantValue}/{valueCondition.requiredElegantValue}, 灵动: {valueCondition.currentAgileValue}/{valueCondition.requiredAgileValue}, 禅意: {valueCondition.currentZenValue}/{valueCondition.requiredZenValue}, 成本: {valueCondition.currentCost}");
-}
 
     // 检查所有条件是否完成
     public bool AreAllConditionsMet()
