@@ -38,8 +38,6 @@ public class LevelConditionChecker : MonoBehaviour
         public int currentCost;            // 当前 cost 总和
         [SerializeField]
         public bool isCompleted;           // 是否完成（显示为勾选框）
-        [TextArea]
-        public string description; // 任务描述文本
         public int rewardAmount; // 完成任务后的奖励金额
     }
 
@@ -107,6 +105,12 @@ public class LevelConditionChecker : MonoBehaviour
             {
                 totalReward += condition.rewardAmount;
             }
+        }
+
+        // 如果数值条件完成，也计入奖励
+        if (valueCondition.isCompleted)
+        {
+            totalReward += valueCondition.rewardAmount;
         }
 
         // 更新 costText 显示：成本总和 + 奖励总和

@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 1346096706147109630}
   - component: {fileID: 6118612439933292063}
   m_Layer: 5
-  m_Name: Text
+  m_Name: value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -28.677795, z: -80.18948, w: -22.942211}
+  m_margin: {x: 0, y: -28.677795, z: -139.99901, w: -22.942211}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -938,7 +938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9168565301039386115}
   m_Layer: 5
-  m_Name: ValueTask
+  m_Name: ZenValueTask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 574e410b38ee94a4ca37d4ad98d1cbb1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
