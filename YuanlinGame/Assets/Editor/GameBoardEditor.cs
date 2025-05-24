@@ -23,9 +23,9 @@ public class GameBoardEditor : Editor
                 DestroyImmediate(board.transform.GetChild(i).gameObject);
             }
 
-            for (int x = 0; x < rows; x++)
+            for (int y = 0; y < cols; y++)
             {
-                for (int y = 0; y < cols; y++)
+                for (int x = 0; x < rows; x++)
                 {
                     GameTile tile = (GameTile)PrefabUtility.InstantiatePrefab(board.tilePrefab, board.transform);
                     tile.transform.localPosition = new Vector3(x - rows * 0.5f + 0.5f, 0f, y - cols * 0.5f + 0.5f);

@@ -57,7 +57,7 @@ public class GameBoard : MonoBehaviour
 
         if (indexX >= 0 && indexX < size.x && indexZ >= 0 && indexZ < size.y)
         {
-            return tiles[indexX * size.x + indexZ];
+            return tiles[indexZ * size.x + indexX];
         }
 
         return null;

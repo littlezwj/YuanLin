@@ -120,8 +120,8 @@ public class GamePuzzle : MonoBehaviour
     }
     public bool IsInBounds(float centerX, float centerZ)
     {
-        float bound_x = gameBoard.size.x / 2;
-        float bound_z = gameBoard.size.y / 2;
+        float bound_x = (float)gameBoard.size.x / 2;
+        float bound_z = (float)gameBoard.size.y / 2;
         foreach (var offset in shapeOffsets)
         {
             float x = centerX + offset.x;
@@ -163,11 +163,11 @@ public class GamePuzzle : MonoBehaviour
     {
         Vector3 selfPos = transform.position;
         Vector3 boardOrigin = gameBoard.transform.position;
-        int halfX = gameBoard.size.x / 2;
-        int halfZ = gameBoard.size.y / 2;
-
-        int cx = Mathf.RoundToInt(selfPos.x - boardOrigin.x + halfX - 0.5f);
-        int cz = Mathf.RoundToInt(selfPos.z - boardOrigin.z + halfZ - 0.5f);
+        int halfX = Mathf.FloorToInt((float)gameBoard.size.x / 2);
+        int halfZ = Mathf.FloorToInt((float)gameBoard.size.y / 2);
+        
+        int cx = Mathf.RoundToInt(selfPos.x - boardOrigin.x + gameBoard.xOffset) + halfX;
+        int cz = Mathf.RoundToInt(selfPos.z - boardOrigin.z + gameBoard.zOffset) + halfZ;
 
         return new Vector2(cx, cz);
     }
@@ -176,10 +176,11 @@ public class GamePuzzle : MonoBehaviour
     {
         ClearPreviewTiles();
         Vector2 boardOffset = GetBoardOffset();
+        //Debug.Log(transform.position + "---" + boardOffset.x + ":" + boardOffset.y);
         foreach (var offset in shapeOffsets)
         {
             int x = (int)boardOffset.x + offset.x;
-            int z = (int)boardOffset.y + offset.y;
+            int z = (int)boardOffset.y + offset.y;            
             GameTile tile = gameBoard.GetTileAt(x, z);
             if (tile != null)
             {
