@@ -68,12 +68,14 @@ Shader "Custom/TransitionShader"
             float smooth_edge = smoothstep(-0.1, 0.1, abs(_TransitionPara) - y);
             float mask = 1 - abs(abs(_TransitionPara) - y) / 0.1;
 
-            half additional_tex = SAMPLE_TEXTURE2D(_AdditionalTex, sampler_AdditionalTex, i.pos.xy * _AdditionalTex_TexelSize.xy).r;
+            float2 at_uv = i.pos.xy * _AdditionalTex_TexelSize.xy * _AdditionalTex_ST.xy + _AdditionalTex_ST.zw;
+            half additional_tex = SAMPLE_TEXTURE2D(_AdditionalTex, sampler_AdditionalTex, at_uv).r;
             half4 main_tex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
-            half3 col = main_tex.rgb + saturate(additional_tex * mask * 0.5);
+            //half3 col = main_tex.rgb + saturate(additional_tex * mask * 0.5);
             //return half4(additional_tex * mask, additional_tex * mask, additional_tex * mask, 1);
-            return half4(_Color * _RendererColor * i.color * col, smooth_edge);
-            //return half4(col, noise1);
+            float alpha = step(0.5, (1 - saturate(additional_tex * mask)) * smooth_edge);
+            return half4((_Color * _RendererColor * i.color).rgb, alpha);
+            //return half4(smooth_edge, smooth_edge, smooth_edge, 1);
         }
 
         ENDHLSL
