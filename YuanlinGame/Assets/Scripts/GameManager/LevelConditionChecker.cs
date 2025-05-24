@@ -54,11 +54,11 @@ public class LevelConditionChecker : MonoBehaviour
     private GameBoard gameBoard;
 
     [Header("UI References")]
-    public TMPro.TextMeshProUGUI hiddenValueText;
-    public TMPro.TextMeshProUGUI elegantValueText;
-    public TMPro.TextMeshProUGUI agileValueText;
-    public TMPro.TextMeshProUGUI zenValueText;
-    public TMPro.TextMeshProUGUI costText; // 新增 cost 总和文本
+    public TextMeshProUGUI hiddenValueText;
+    public TextMeshProUGUI elegantValueText;
+    public TextMeshProUGUI agileValueText;
+    public TextMeshProUGUI zenValueText;
+    public TextMeshProUGUI costText; // 新增 cost 总和文本
     public Image hiddenValueFill;
     public Image elegantValueFill;
     public Image agileValueFill;

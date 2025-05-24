@@ -6,14 +6,17 @@ using TMPro;
 public class LevelResultManager : MonoBehaviour
 {
     [Header("UI References")]
-    public Text levelNameText;
-    public Text totalScoreText;
-    public Text costText;
-    public Text rewardText;
+    public GameObject resultPanel;
+    public TMP_Text levelNameText;
+    public TMP_Text totalScoreText;
+    public TMP_Text costText;
+    public TMP_Text rewardText;
     public RectTransform extraObjectsParent;
     public GameObject extraObjectPrefab;
     public List<ExtraObjects> extraObjects;
-    public Text objectiveResultText;
+    public TMP_Text objectiveResultText;
+
+    public Button finishBtn;
 
     [System.Serializable]
     public class ExtraObjects
@@ -22,13 +25,21 @@ public class LevelResultManager : MonoBehaviour
         public Sprite img;
     }
 
-    void OnEnable()
+    private void Awake()
     {
-        UpdateResultUI();
+        finishBtn.onClick.AddListener(UpdateResultUI);
+        resultPanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        bool levelComplete = LevelConditionChecker.Instance.valueCondition.isCompleted;
+        finishBtn.interactable = levelComplete;
     }
 
     public void UpdateResultUI()
     {
+        resultPanel.SetActive(true);
         // 获取单例（确保它已经在场景中初始化）
         LevelConditionChecker checker = LevelConditionChecker.Instance;
         if (checker == null)
@@ -43,10 +54,10 @@ public class LevelResultManager : MonoBehaviour
         if (totalScoreText != null)
             totalScoreText.text = "得分: " + checker.valueCondition.currentCost + checker.valueCondition.reward;
         if (costText != null)
-            costText.text = "本单收益: " + checker.valueCondition.currentCost;
+            costText.text = "" + checker.valueCondition.currentCost;
         if (rewardText != null)
-            rewardText.text = "额外收益: " + checker.valueCondition.reward;
-        
+            rewardText.text = "" + checker.valueCondition.reward;
+        GenerateExtraObjectsList();
         //if (objectiveResultText != null)
         //    objectiveResultText.text = checker.IsObjectiveMet ? "目标达成 ✅" : "目标未完成 ❌";
     }
@@ -68,16 +79,10 @@ public class LevelResultManager : MonoBehaviour
             GameObject obj = Instantiate(extraObjectPrefab, extraObjectsParent.transform);
 
             // 尝试获取 Image 或 SpriteRenderer
-            Image image = obj.GetComponentInChildren<Image>();
+            Image image = obj.transform.GetChild(1).GetComponent<Image>();
             if (image != null)
             {
                 image.sprite = data.img;
-            }
-            else
-            {
-                SpriteRenderer renderer = obj.GetComponentInChildren<SpriteRenderer>();
-                if (renderer != null)
-                    renderer.sprite = data.img;
             }
 
             // 设置 TextMeshPro 文字
