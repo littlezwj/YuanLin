@@ -20,7 +20,6 @@ Shader "Custom/TransitionShader"
 
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
         #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/SpaceTransforms.hlsl"
-        #include "Random.hlsl"
 
         CBUFFER_START(UnityPerMaterial)
 

@@ -904,7 +904,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 611
+      value: 583
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -1111,7 +1111,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 379.5
+      value: 351.5
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -3166,7 +3166,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 840
+      value: 812
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -3373,7 +3373,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1066.1
+      value: 1038.1
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -8720,7 +8720,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Level_2
+            m_StringArgument: Start
             m_BoolArgument: 0
           m_CallState: 2
     delayInSeconds: 0
@@ -11731,7 +11731,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 144
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
