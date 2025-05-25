@@ -15,7 +15,7 @@ public class GameBoardEditor : Editor
             int rows = board.size.x;
             int cols = board.size.y;
 
-            board.transform.GetChild(0).localScale = new Vector3(rows, cols, 1);
+            board.transform.GetChild(0).localScale = new Vector3(rows + 3, cols + 3, 1);
 
             // Çå³ý¾ÉµÄ Tile£¨±£Áô index 0£©
             for (int i = board.transform.childCount - 1; i >= 1; i--)
