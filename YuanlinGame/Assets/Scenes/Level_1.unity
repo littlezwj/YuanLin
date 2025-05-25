@@ -3846,7 +3846,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.97848594, b: 0.9198113, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -4278,10 +4278,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2418231211733718286, guid: 46a36bef4b1663341a9c0964a1a509d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418231211733718322, guid: 46a36bef4b1663341a9c0964a1a509d2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2418231211733718322, guid: 46a36bef4b1663341a9c0964a1a509d2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418231211733718322, guid: 46a36bef4b1663341a9c0964a1a509d2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418231211733718322, guid: 46a36bef4b1663341a9c0964a1a509d2,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2418231212032579132, guid: 46a36bef4b1663341a9c0964a1a509d2,
         type: 3}

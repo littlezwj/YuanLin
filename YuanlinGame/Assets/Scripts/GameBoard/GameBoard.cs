@@ -23,7 +23,7 @@ public class GameBoard : MonoBehaviour
         gamePuzzles.Clear();
         //this.size = size;
         tiles = new GameTile[size.x * size.y];
-        ground.localScale = new Vector3(size.x, size.y, 1f);
+        ground.localScale = new Vector3(size.x + 3, size.y + 3, 1f);
         xOffset = 0;// size.x / 2;
         zOffset = 0;// size.y / 2;
 
