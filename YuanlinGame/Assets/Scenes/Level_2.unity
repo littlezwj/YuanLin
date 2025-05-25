@@ -10871,6 +10871,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shudaicao_01
       objectReference: {fileID: 0}
+    - target: {fileID: 7141629017534411492, guid: 908e7323c9e715d4a81441e6df7b96ca,
+        type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7886380204075048027, guid: 908e7323c9e715d4a81441e6df7b96ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12212,6 +12217,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: pudi_01
       objectReference: {fileID: 0}
+    - target: {fileID: 7615140086952490833, guid: 1d42eec96a45a624daa674cecf3a04a2,
+        type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7615140086952490833, guid: 1d42eec96a45a624daa674cecf3a04a2,
+        type: 3}
+      propertyPath: typeTag
+      value: "\u94FA\u5730"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13170,6 +13185,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1293212542028212703, guid: 942dc8b577e2dad4dbc7fd53a4f0d038,
         type: 3}
+      propertyPath: cost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293212542028212703, guid: 942dc8b577e2dad4dbc7fd53a4f0d038,
+        type: 3}
       propertyPath: typeTag
       value: "\u592A\u6E56\u77F3\xB7\u5C0F"
       objectReference: {fileID: 0}
@@ -13327,6 +13347,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9155876114877230127, guid: 860975fd61228fd48a5f548cfdd33bf8,
         type: 3}
+      propertyPath: cost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155876114877230127, guid: 860975fd61228fd48a5f548cfdd33bf8,
+        type: 3}
       propertyPath: typeTag
       value: "\u7AF9\u5B50"
       objectReference: {fileID: 0}
@@ -13480,6 +13505,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4469383022940585093, guid: c075b8b1bed021b409028a383aae7f2e,
+        type: 3}
+      propertyPath: cost
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 6707255866699182518, guid: c075b8b1bed021b409028a383aae7f2e,
         type: 3}
       propertyPath: m_Name
@@ -13562,6 +13592,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1376788381770871528, guid: eb5125205a156494fb8019f1fd1b2935,
+        type: 3}
+      propertyPath: cost
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 1376788381770871528, guid: eb5125205a156494fb8019f1fd1b2935,
         type: 3}
       propertyPath: typeTag
@@ -13753,6 +13788,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1773843817023052401, guid: 9da7a771f5997b448808d37a1142b4b2,
+        type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1773843817023052401, guid: 9da7a771f5997b448808d37a1142b4b2,
         type: 3}
       propertyPath: typeTag
@@ -14464,6 +14504,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840223689}
     m_Modifications:
+    - target: {fileID: 3606044019465602356, guid: 3f5d09c315984d544a15b2bb7311d21d,
+        type: 3}
+      propertyPath: m_text
+      value: "\u9020\u56ED\u7684\u7A7A\u95F4\u624B\u6CD5\u2014\u2014\u5148\u85CF\u540E\u663E\n\u62D9\u653F\u56ED\u201C\u6787\u6777\u56ED\u201D\uFF0C\u56ED\u95E8\u9690\u4E8E\u66F2\u5ECA\u8F6C\u6298\u5904\uFF0C\u5165\u56ED\u5148\u89C1\u4E91\u5899\u6F0F\u7A97\u900F\u51FA\u6787\u6777\u679D\u53F6\uFF0C\u7ED5\u8FC7\u7167\u58C1\u65B9\u89C1\u5168\u666F\u3002\u767D\u5899\u4E3A\u5E95\uFF0C\u6787\u6777\u6DF1\u7EFF\uFF0C\u70B9\u7F00\u6728\u7EE3\u7403\uFF08\u767D\u82B1\uFF09\u4E0E\u4E66\u5E26\u8349\uFF08\u6D45\u7EFF\uFF09\uFF0C\u5F62\u6210\u201C\u7FE0\u53E0\u4E94\u91CD\u201D\u3002"
+      objectReference: {fileID: 0}
     - target: {fileID: 4957367644982104905, guid: 3f5d09c315984d544a15b2bb7311d21d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -14638,6 +14683,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lou_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765330411153986413, guid: 8b0aa54c00cd9384bb289b3a49e247a0,
+        type: 3}
+      propertyPath: cost
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2765330411153986413, guid: 8b0aa54c00cd9384bb289b3a49e247a0,
         type: 3}
@@ -15567,6 +15617,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5397329663520339303, guid: 4c5a878cf6a505e4dae7dfd5d5cde94f,
         type: 3}
+      propertyPath: cost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397329663520339303, guid: 4c5a878cf6a505e4dae7dfd5d5cde94f,
+        type: 3}
       propertyPath: typeTag
       value: "\u6787\u6777\u6811"
       objectReference: {fileID: 0}
@@ -15702,6 +15757,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1873745720727823412, guid: b8aada5283a319f499312c9ac53e4642,
+        type: 3}
+      propertyPath: cost
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 6453949516869343138, guid: b8aada5283a319f499312c9ac53e4642,
         type: 3}
       propertyPath: m_Name

@@ -8627,6 +8627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1293212542028212703, guid: 942dc8b577e2dad4dbc7fd53a4f0d038,
         type: 3}
+      propertyPath: cost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293212542028212703, guid: 942dc8b577e2dad4dbc7fd53a4f0d038,
+        type: 3}
       propertyPath: typeTag
       value: "\u592A\u6E56\u77F3\xB7\u5C0F"
       objectReference: {fileID: 0}
@@ -8801,6 +8806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155876114877230127, guid: 860975fd61228fd48a5f548cfdd33bf8,
+        type: 3}
+      propertyPath: cost
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9155876114877230127, guid: 860975fd61228fd48a5f548cfdd33bf8,
         type: 3}
@@ -9083,6 +9093,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 97725103}
     m_Modifications:
+    - target: {fileID: 1773843817023052401, guid: 9da7a771f5997b448808d37a1142b4b2,
+        type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1773843817023052401, guid: 9da7a771f5997b448808d37a1142b4b2,
         type: 3}
       propertyPath: typeTag
@@ -9931,6 +9946,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840223689}
     m_Modifications:
+    - target: {fileID: 3606044019465602356, guid: 3f5d09c315984d544a15b2bb7311d21d,
+        type: 3}
+      propertyPath: m_text
+      value: "\u9020\u56ED\u7684\u7A7A\u95F4\u624B\u6CD5\u2014\u2014\u534A\u906E\u534A\u900F\n\u82CF\u5DDE\u62D9\u653F\u56ED\u201C\u6D77\u68E0\u6625\u575E\u201D\uFF0C\u5317\u5899\u5F00\u516D\u89D2\u6F0F\u7A97\uFF0C\u90BB\u501F\u5899\u5916\u7AF9\u6797\uFF0C\u7AF9\u5F71\u900F\u8FC7\u51B0\u88C2\u7EB9\u6295\u5C04\u4E8E\u94FA\u5730\uFF0C\u5F62\u6210\u201C\u7AF9\u77F3\u53CC\u6E05\u201D\u753B\u610F\u3002"
+      objectReference: {fileID: 0}
     - target: {fileID: 4957367644982104905, guid: 3f5d09c315984d544a15b2bb7311d21d,
         type: 3}
       propertyPath: m_Pivot.x
