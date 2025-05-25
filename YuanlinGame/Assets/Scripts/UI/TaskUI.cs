@@ -19,7 +19,7 @@ public class TaskUI : MonoBehaviour
 
     private LevelConditionChecker levelConditionChecker;
     private List<GameObject> taskUIList = new List<GameObject>(); // 存储生成的任务 UI
-    private List<GameObject> valueTaskUIList = new List<GameObject>(); // 存储生成的值任务 UI
+    private Dictionary<GameObject, string> valueTaskUIList = new Dictionary<GameObject, string>(); // 存储生成的值任务 UI
 
     private void Start()
     {
@@ -88,33 +88,37 @@ public class TaskUI : MonoBehaviour
             Debug.LogError("TextMeshProUGUI component not found in value task prefab!");
         }
 
-        valueTaskUIList.Add(valueTaskUI);
+        valueTaskUIList.Add(valueTaskUI, description);
     }
 
     private void UpdateValueTaskCompletionStatus()
     {
         var valueCondition = levelConditionChecker.valueCondition;
-        for (int i = 0; i < valueTaskUIList.Count; i++)
+        foreach(KeyValuePair<GameObject, string> kvp in valueTaskUIList)
         {
-            GameObject valueTaskUI = valueTaskUIList[i];
+            GameObject valueTaskUI = kvp.Key;
             Transform completeImage = valueTaskUI.transform.Find("complete");
             if (completeImage != null)
             {
                 // 根据值的完成状态更新 UI
                 bool isCompleted = false;
-                switch (i)
+                switch (kvp.Value)
                 {
-                    case 0:
+                    case "隐逸值":
                         isCompleted = valueCondition.currentHiddenValue >= valueCondition.requiredHiddenValue;
+                        Debug.Log("当前值1：" + isCompleted);
                         break;
-                    case 1:
+                    case "清雅值":
                         isCompleted = valueCondition.currentElegantValue >= valueCondition.requiredElegantValue;
+                        Debug.Log("当前值2：" + isCompleted);
                         break;
-                    case 2:
+                    case "灵动值":
                         isCompleted = valueCondition.currentAgileValue >= valueCondition.requiredAgileValue;
+                        Debug.Log("当前值3：" + isCompleted);
                         break;
-                    case 3:
+                    case "禅意值":
                         isCompleted = valueCondition.currentZenValue >= valueCondition.requiredZenValue;
+                        Debug.Log("当前值4：" + isCompleted);
                         break;
                 }
                 completeImage.gameObject.SetActive(isCompleted);
