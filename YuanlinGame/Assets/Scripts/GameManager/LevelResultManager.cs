@@ -85,7 +85,7 @@ public class LevelResultManager : MonoBehaviour
             }
 
             // 设置 TextMeshPro 文字
-            TextMeshPro text = obj.GetComponentInChildren<TextMeshPro>();
+            TMP_Text text = obj.GetComponentInChildren<TMP_Text>();
             if (text != null)
             {
                 text.text = data.label;
