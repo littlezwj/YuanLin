@@ -335,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeTag: "\u623F\u5C4B"
   cost: 300
-  itemSprite: {fileID: 21300000, guid: f047d89149b97cb4888cf9a36b0afd0f, type: 3}
+  itemSprite: {fileID: 21300000, guid: bab81a6a04800334aaa1ebbe819b2301, type: 3}
   hiddenValue: 2
   elegantValue: 2
   agileValue: 4
