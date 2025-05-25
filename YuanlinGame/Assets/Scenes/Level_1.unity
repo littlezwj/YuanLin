@@ -746,7 +746,7 @@ PrefabInstance:
     - target: {fileID: 423247330529248502, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: maxUses
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 423247330529248502, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -886,7 +886,7 @@ PrefabInstance:
     - target: {fileID: 423247330529248502, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: maxUses
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 423247330529248502, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -3145,10 +3145,10 @@ MonoBehaviour:
     description: "\u5305\u542B\u5C0F\u6C34\u6C60"
     rewardAmount: 100
   valueCondition:
-    requiredHiddenValue: 0
+    requiredHiddenValue: 6
     requiredElegantValue: 0
-    requiredAgileValue: 7
-    requiredZenValue: 9
+    requiredAgileValue: 4
+    requiredZenValue: 0
     currentHiddenValue: 0
     currentElegantValue: 0
     currentAgileValue: 0
@@ -3210,9 +3210,9 @@ MonoBehaviour:
   extraObjectPrefab: {fileID: 1715763110167274014, guid: 28180049155dd854189e32f33c80dc0b,
     type: 3}
   extraObjects:
-  - label: "\u82B1\u6735"
-    img: {fileID: 21300000, guid: bf930b89cf3a6d64ebeda7d0ac362d4f, type: 3}
-  - label: "\u697C\u9601"
+  - label: "\u6787\u6777\u6811"
+    img: {fileID: 21300000, guid: bab81a6a04800334aaa1ebbe819b2301, type: 3}
+  - label: "\u4E66\u5E26\u8349"
     img: {fileID: 21300000, guid: ad8719e90f13ad44691b1fad98ce77d6, type: 3}
   objectiveResultText: {fileID: 0}
   finishBtn: {fileID: 1688832116}
@@ -4454,7 +4454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208a60f56b0951840ad2334ecf3d41c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialManager: {fileID: 1173414948}
   delay: 2.5
 --- !u!1 &1181367242
 GameObject:
