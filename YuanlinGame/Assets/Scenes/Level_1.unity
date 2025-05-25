@@ -3145,10 +3145,10 @@ MonoBehaviour:
     description: "\u5305\u542B\u5C0F\u6C34\u6C60"
     rewardAmount: 100
   valueCondition:
-    requiredHiddenValue: 3
-    requiredElegantValue: 2
-    requiredAgileValue: 0
-    requiredZenValue: 0
+    requiredHiddenValue: 0
+    requiredElegantValue: 0
+    requiredAgileValue: 7
+    requiredZenValue: 9
     currentHiddenValue: 0
     currentElegantValue: 0
     currentAgileValue: 0

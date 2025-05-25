@@ -114,9 +114,9 @@ MonoBehaviour:
   cost: 300
   itemSprite: {fileID: 21300000, guid: a031c6f32179ff0479594dfa527e8f75, type: 3}
   hiddenValue: 2
-  elegantValue: 2
-  agileValue: 4
-  zenValue: 6
+  elegantValue: 1
+  agileValue: 0
+  zenValue: 1
 --- !u!1 &8163496183162592654
 GameObject:
   m_ObjectHideFlags: 0

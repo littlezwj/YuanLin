@@ -221,10 +221,10 @@ MonoBehaviour:
   typeTag: "\u4E66\u5E26\u8349"
   cost: 300
   itemSprite: {fileID: 21300000, guid: f047d89149b97cb4888cf9a36b0afd0f, type: 3}
-  hiddenValue: 2
-  elegantValue: 2
-  agileValue: 4
-  zenValue: 6
+  hiddenValue: 1
+  elegantValue: 1
+  agileValue: 0
+  zenValue: 1
 --- !u!1 &8486302732085872347
 GameObject:
   m_ObjectHideFlags: 0
