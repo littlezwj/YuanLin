@@ -842,7 +842,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 611
+      value: 584
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -981,7 +981,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 379.5
+      value: 352.5
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -2458,7 +2458,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 840
+      value: 813
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -2603,7 +2603,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1066.1
+      value: 1039.1
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -4593,6 +4593,18 @@ MonoBehaviour:
   - eventToTrigger:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1132860567}
+          m_TargetAssemblyTypeName: LevelResultManager, Assembly-CSharp
+          m_MethodName: UpdateResultUI
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: hide
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 1840223690}
           m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_MethodName: SetTrigger
@@ -8282,7 +8294,7 @@ PrefabInstance:
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 144
+      value: 117
       objectReference: {fileID: 0}
     - target: {fileID: 6218962644448395150, guid: aed4d2f042db250409b30d533ab4eefc,
         type: 3}
@@ -9543,7 +9555,7 @@ PrefabInstance:
     - target: {fileID: 960941435712626983, guid: a198979167cae1947adc8103ba26ffd8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -191
+      value: -170
       objectReference: {fileID: 0}
     - target: {fileID: 960941435712626983, guid: a198979167cae1947adc8103ba26ffd8,
         type: 3}
