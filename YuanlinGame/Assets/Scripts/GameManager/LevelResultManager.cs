@@ -27,7 +27,6 @@ public class LevelResultManager : MonoBehaviour
 
     private void Awake()
     {
-        finishBtn.onClick.AddListener(UpdateResultUI);
         resultPanel.SetActive(false);
     }
 
