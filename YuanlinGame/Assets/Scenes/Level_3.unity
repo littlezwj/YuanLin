@@ -4297,9 +4297,9 @@ MonoBehaviour:
   extraObjectPrefab: {fileID: 1715763110167274014, guid: 28180049155dd854189e32f33c80dc0b,
     type: 3}
   extraObjects:
-  - label: "\u82B1\u6735"
+  - label: "\u84DD\u8272\u7EE3\u7403"
     img: {fileID: 21300000, guid: bf930b89cf3a6d64ebeda7d0ac362d4f, type: 3}
-  - label: "\u697C\u9601"
+  - label: "\u6787\u6777\u6811"
     img: {fileID: 21300000, guid: ad8719e90f13ad44691b1fad98ce77d6, type: 3}
   objectiveResultText: {fileID: 0}
   finishBtn: {fileID: 1688832116}
