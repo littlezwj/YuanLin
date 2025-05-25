@@ -7804,7 +7804,7 @@ PrefabInstance:
     - target: {fileID: 1773843817023052401, guid: 9da7a771f5997b448808d37a1142b4b2,
         type: 3}
       propertyPath: typeTag
-      value: "\u84DD\u8272\u7EE3\u7403"
+      value: "\u7EE3\u7403\xB7\u84DD\u8272"
       objectReference: {fileID: 0}
     - target: {fileID: 2067934226261815719, guid: 9da7a771f5997b448808d37a1142b4b2,
         type: 3}
