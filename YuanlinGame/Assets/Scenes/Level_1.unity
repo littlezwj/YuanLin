@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -586,12 +587,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!95 &94631066
 Animator:
   serializedVersion: 5
@@ -1047,7 +1048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1133, y: 435}
+  m_AnchoredPosition: {x: -1133, y: 452}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &268429505
@@ -1693,6 +1694,41 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4702350a6607fa4690e72f80692eb48, type: 3}
+--- !u!1 &455587941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 455587942}
+  m_Layer: 5
+  m_Name: 01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &455587942
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455587941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1840223689}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &466864137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 608255225349427589, guid: d4702350a6607fa4690e72f80692eb48,
@@ -2918,7 +2954,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 36, y: 0}
+  m_AnchoredPosition: {x: 151, y: 0}
   m_SizeDelta: {x: 1200, y: 300}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &973776753
@@ -3214,6 +3250,1213 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 328303076}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1173414947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1173414949}
+  - component: {fileID: 1173414948}
+  - component: {fileID: 1173414950}
+  m_Layer: 0
+  m_Name: TMMmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1173414948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173414947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d609c3b353b9f479ae6ff1b7be4599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tutorials:
+  - Events:
+      OnTutorialEnter:
+        m_PersistentCalls:
+          m_Calls: []
+      OnTutorialStart:
+        m_PersistentCalls:
+          m_Calls: []
+      OnTutorialEnd:
+        m_PersistentCalls:
+          m_Calls: []
+    Name: First_Tutorial
+    DataValidatorEnabled: 1
+    Stages:
+    - Name: 01_GameBoard
+      IsEnabled: 1
+      DataValidatorEnabled: 1
+      Trigger:
+        TriggerActivationDelay: 1.5
+        OnDelayEnd:
+          m_PersistentCalls:
+            m_Calls: []
+        OnTriggerActivate:
+          m_PersistentCalls:
+            m_Calls: []
+        TriggerActivationEvent: 0
+        TriggerInput: 
+        TriggerKey: 0
+        EventTarget:
+          Source: {fileID: 0}
+          _componentName: 
+          _unityEventName: 
+        TriggerTimerAmount: 3.5
+        Type: 6
+        UIButtonTarget: {fileID: 0}
+      Audio:
+        Clip: {fileID: 0}
+        Source: {fileID: 0}
+        Timing: 0
+      Events:
+        OnStageEnter:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStagePlay:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStageExit:
+          m_PersistentCalls:
+            m_Calls: []
+      Modules:
+        Arrows: []
+        Highlighters:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 0}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 0, y: 0}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            CustomSize: {x: 0, y: 0}
+            SizeOffset: {x: 0, y: 0}
+            SizeType: 0
+            UITransformReference: {fileID: 455587942}
+          Enabled: 1
+          OverridePrefab: 0
+          ParentManager: {fileID: 1173414948}
+        Images: []
+        Popups:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 0}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 0, y: -200}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            ButtonClickEvent: 0
+            ButtonLabel:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u786E\u5B9A"
+            PopupImage: {fileID: 0}
+            PopupMessage:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u6BCF\u4E00\u4F4D\u5BA2\u6237\u9700\u8981\u8BBE\u8BA1\u7684\u5E73\u65B9\u9762\u79EF\u4E0D\u540C\uFF0C\u60A8\u9700\u8981\u5229\u7528\u6709\u9650\u7684\u9762\u79EF\u5B8C\u6210\u8BBE\u8BA1"
+            PopupTitle:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u9762\u79EF\u9884\u7B97"
+            ShowButton: 1
+          Enabled: 1
+          OverridePrefab: 0
+          ParentManager: {fileID: 1173414948}
+    - Name: 02_Card
+      IsEnabled: 1
+      DataValidatorEnabled: 1
+      Trigger:
+        TriggerActivationDelay: 1.5
+        OnDelayEnd:
+          m_PersistentCalls:
+            m_Calls: []
+        OnTriggerActivate:
+          m_PersistentCalls:
+            m_Calls: []
+        TriggerActivationEvent: 0
+        TriggerInput: 
+        TriggerKey: 0
+        EventTarget:
+          Source: {fileID: 0}
+          _componentName: 
+          _unityEventName: 
+        TriggerTimerAmount: 3.5
+        Type: 6
+        UIButtonTarget: {fileID: 0}
+      Audio:
+        Clip: {fileID: 0}
+        Source: {fileID: 0}
+        Timing: 0
+      Events:
+        OnStageEnter:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStagePlay:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStageExit:
+          m_PersistentCalls:
+            m_Calls: []
+      Modules:
+        Arrows: []
+        Highlighters:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 1488525494055102, guid: 71ef030588ab6094a86baa5675d0694c,
+            type: 3}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 0, y: 0}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            CustomSize: {x: 0, y: 0}
+            SizeOffset: {x: 0, y: 0}
+            SizeType: 0
+            UITransformReference: {fileID: 455587942}
+          Enabled: 1
+          OverridePrefab: 1
+          ParentManager: {fileID: 1173414948}
+        Images: []
+        Popups:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 0}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 150, y: -100}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            ButtonClickEvent: 0
+            ButtonLabel:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u786E\u5B9A"
+            PopupImage: {fileID: 0}
+            PopupMessage:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u4EE5\u4E0B\u662F\u60A8\u73B0\u6709\u7684\u5EFA\u7B51\u90E8\u4EF6\u56FE\u7EB8\uFF0C\u62D6\u62FD\u90E8\u7F72\u9884\u89C8\u5EFA\u7B51\uFF0C\u7528\u9F20\u6807\u53F3\u952E\u65CB\u8F6C\u8C03\u6574\u65B9\u5411"
+            PopupTitle:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u5EFA\u7B51\u90E8\u4EF6"
+            ShowButton: 1
+          Enabled: 1
+          OverridePrefab: 0
+          ParentManager: {fileID: 1173414948}
+    - Name: 03_Task
+      IsEnabled: 1
+      DataValidatorEnabled: 1
+      Trigger:
+        TriggerActivationDelay: 1.5
+        OnDelayEnd:
+          m_PersistentCalls:
+            m_Calls: []
+        OnTriggerActivate:
+          m_PersistentCalls:
+            m_Calls: []
+        TriggerActivationEvent: 0
+        TriggerInput: 
+        TriggerKey: 0
+        EventTarget:
+          Source: {fileID: 0}
+          _componentName: 
+          _unityEventName: 
+        TriggerTimerAmount: 3.5
+        Type: 6
+        UIButtonTarget: {fileID: 0}
+      Audio:
+        Clip: {fileID: 0}
+        Source: {fileID: 0}
+        Timing: 0
+      Events:
+        OnStageEnter:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStagePlay:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStageExit:
+          m_PersistentCalls:
+            m_Calls: []
+      Modules:
+        Arrows: []
+        Highlighters:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 1488525494055102, guid: 08273a1191ac75a409222a77785146be,
+            type: 3}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 0, y: 0}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            CustomSize: {x: 0, y: 0}
+            SizeOffset: {x: 0, y: 0}
+            SizeType: 0
+            UITransformReference: {fileID: 455587942}
+          Enabled: 1
+          OverridePrefab: 1
+          ParentManager: {fileID: 1173414948}
+        Images: []
+        Popups:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 0}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: -200, y: 250}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            ButtonClickEvent: 0
+            ButtonLabel:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u786E\u5B9A"
+            PopupImage: {fileID: 0}
+            PopupMessage:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u6BCF\u4F4D\u5BA2\u6237\u6709\u81EA\u5DF1\u7684\u9700\u6C42\uFF0C\u60A8\u9700\u8981\u9009\u62E9\u5408\u9002\u7684\u5EFA\u7B51\u6446\u653E\u5B8C\u6210\u4EFB\u52A1\u3002"
+            PopupTitle:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u5BA2\u6237\u7684\u9700\u6C42"
+            ShowButton: 1
+          Enabled: 1
+          OverridePrefab: 0
+          ParentManager: {fileID: 1173414948}
+    - Name: 04_Value
+      IsEnabled: 1
+      DataValidatorEnabled: 1
+      Trigger:
+        TriggerActivationDelay: 1.5
+        OnDelayEnd:
+          m_PersistentCalls:
+            m_Calls: []
+        OnTriggerActivate:
+          m_PersistentCalls:
+            m_Calls: []
+        TriggerActivationEvent: 0
+        TriggerInput: 
+        TriggerKey: 0
+        EventTarget:
+          Source: {fileID: 0}
+          _componentName: 
+          _unityEventName: 
+        TriggerTimerAmount: 3.5
+        Type: 6
+        UIButtonTarget: {fileID: 0}
+      Audio:
+        Clip: {fileID: 0}
+        Source: {fileID: 0}
+        Timing: 0
+      Events:
+        OnStageEnter:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStagePlay:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStageExit:
+          m_PersistentCalls:
+            m_Calls: []
+      Modules:
+        Arrows: []
+        Highlighters:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 1488525494055102, guid: 25438331f57124643ae4d68c25fc3013,
+            type: 3}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 0, y: 0}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            CustomSize: {x: 0, y: 0}
+            SizeOffset: {x: 0, y: 0}
+            SizeType: 0
+            UITransformReference: {fileID: 455587942}
+          Enabled: 1
+          OverridePrefab: 1
+          ParentManager: {fileID: 1173414948}
+        Images: []
+        Popups:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 0}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 200, y: 250}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            ButtonClickEvent: 0
+            ButtonLabel:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u786E\u5B9A"
+            PopupImage: {fileID: 0}
+            PopupMessage:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u6BCF\u5F20\u5361\u7247\u5EFA\u7B51\u4F1A\u6709\u72EC\u7279\u7684\u6C1B\u56F4\u503C\uFF0C\u65B9\u6848\u6574\u4F53\u7684\u6C1B\u56F4\u503C\u663E\u793A\u5728\u8FD9\u91CC\u3002"
+            PopupTitle:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u6C1B\u56F4\u503C"
+            ShowButton: 1
+          Enabled: 1
+          OverridePrefab: 0
+          ParentManager: {fileID: 1173414948}
+    - Name: 05_Money
+      IsEnabled: 1
+      DataValidatorEnabled: 1
+      Trigger:
+        TriggerActivationDelay: 1.5
+        OnDelayEnd:
+          m_PersistentCalls:
+            m_Calls: []
+        OnTriggerActivate:
+          m_PersistentCalls:
+            m_Calls: []
+        TriggerActivationEvent: 0
+        TriggerInput: 
+        TriggerKey: 0
+        EventTarget:
+          Source: {fileID: 0}
+          _componentName: 
+          _unityEventName: 
+        TriggerTimerAmount: 3.5
+        Type: 6
+        UIButtonTarget: {fileID: 0}
+      Audio:
+        Clip: {fileID: 0}
+        Source: {fileID: 0}
+        Timing: 0
+      Events:
+        OnStageEnter:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStagePlay:
+          m_PersistentCalls:
+            m_Calls: []
+        OnStageExit:
+          m_PersistentCalls:
+            m_Calls: []
+      Modules:
+        Arrows: []
+        Highlighters:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 1488525494055102, guid: ab48059abad748f48b6a2794cf0f4698,
+            type: 3}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 0, y: 0}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            CustomSize: {x: 0, y: 0}
+            SizeOffset: {x: 0, y: 0}
+            SizeType: 0
+            UITransformReference: {fileID: 455587942}
+          Enabled: 1
+          OverridePrefab: 1
+          ParentManager: {fileID: 1173414948}
+        Images: []
+        Popups:
+        - Module: {fileID: 0}
+          ModulePrefab: {fileID: 0}
+          Settings:
+            Notes: 
+            DataValidatorEnabled: 0
+            ConstrainPadding:
+              Top: 0
+              Left: 0
+              Bottom: 0
+              Right: 0
+            ConstrainToCanvas: 0
+            CustomPosition: {x: 0, y: 0}
+            FadeInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+            FloatEffectSettings:
+              CanInteract: 1
+              IsEnabled: 1
+              Speed: 3.5
+              CustomPattern:
+                serializedVersion: 2
+                m_Curve:
+                - serializedVersion: 3
+                  time: 0
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 1
+                  value: 1
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                - serializedVersion: 3
+                  time: 2
+                  value: 0
+                  inSlope: 0
+                  outSlope: 0
+                  tangentMode: 0
+                  weightedMode: 0
+                  inWeight: 0
+                  outWeight: 0
+                m_PreInfinity: 1
+                m_PostInfinity: 1
+                m_RotationOrder: 4
+              Direction: 1
+              FloatPattern: 0
+              FloatRange: 20
+            FlyInEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 0.05
+              FlyDirection: 0
+              FlyDistance: 100
+            PlacementType: 0
+            PositionMode: 0
+            PositionOffset: {x: 200, y: 100}
+            ScalePulsingEffectSettings:
+              CanInteract: 1
+              IsEnabled: 0
+              Speed: 3.5
+              HeightRange: 2
+              WidthRange: 2
+            TargetCanvas: {fileID: 1840223688}
+            TargetType: 0
+            TransformTarget: {fileID: 0}
+            UITarget: {fileID: 455587942}
+            UpdateEveryFrame: 0
+            ButtonClickEvent: 0
+            ButtonLabel:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u5F00\u59CB\u8D5A\u94B1"
+            PopupImage: {fileID: 0}
+            PopupMessage:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u5BA2\u6237\u9700\u6C42\u5B8C\u6210\u7684\u8D8A\u591A\uFF0C\u989D\u5916\u6536\u76CA\u8D8A\u591A\u3002\u53EF\u4EE5\u8D5A\u5F88\u591A\u5F88\u591A\u7684\u94B1\u3002"
+            PopupTitle:
+              _keys:
+              - fffe55d8-2907-4de3-ae0b-047d16893ccf
+              _values:
+              - "\u9884\u8BA1\u6536\u76CA"
+            ShowButton: 1
+          Enabled: 1
+          OverridePrefab: 0
+          ParentManager: {fileID: 1173414948}
+  ArrowModulePool:
+    CustomPoolSize: 5
+    OverridePoolSize: 0
+    Pool: []
+    Prefab: {fileID: 1596002136139788, guid: 4b57d8a18527da14ea5c8a607ddab3cd, type: 3}
+  HighlighterModulePool:
+    CustomPoolSize: 5
+    OverridePoolSize: 0
+    Pool: []
+    Prefab: {fileID: 1488525494055102, guid: 3377323c3b76de14ba25baf130e9ea5d, type: 3}
+  ImageModulePool:
+    CustomPoolSize: 5
+    OverridePoolSize: 0
+    Pool: []
+    Prefab: {fileID: 1164840145251634, guid: 11b43d00181f4c34ab7a0969e638b007, type: 3}
+  PopupModulePool:
+    CustomPoolSize: 5
+    OverridePoolSize: 0
+    Pool: []
+    Prefab: {fileID: 1757758472786602, guid: cfdd4d60450f5b14581e72adda590f89, type: 3}
+  LocalizationData:
+    CurrentLanguageIndex: 0
+    Languages:
+    - Id: fffe55d8-2907-4de3-ae0b-047d16893ccf
+      Name: English (US)
+  PlayOnStart: 1
+  StartingTutorialIndex: 0
+  OnLanguageChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1173414949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173414947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 651.02856, y: 298.89624, z: 30.279024}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1173414950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173414947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208a60f56b0951840ad2334ecf3d41c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialManager: {fileID: 1173414948}
+  delay: 2.5
 --- !u!1 &1181367242
 GameObject:
   m_ObjectHideFlags: 0
@@ -4732,7 +5975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -273, y: 381}
+  m_AnchoredPosition: {x: -273, y: 398}
   m_SizeDelta: {x: 175, y: 124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688832116
@@ -5357,6 +6600,7 @@ RectTransform:
   - {fileID: 6368086826749391012}
   - {fileID: 1876593592419963810}
   - {fileID: 1212261991}
+  - {fileID: 455587942}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8053,7 +9297,7 @@ PrefabInstance:
     - target: {fileID: 2596069746501386110, guid: e35c1499455391644bec9e50f3b00c77,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2596069746501386110, guid: e35c1499455391644bec9e50f3b00c77,
         type: 3}
@@ -9870,3 +11114,4 @@ SceneRoots:
   - {fileID: 1637089590}
   - {fileID: 1229364488}
   - {fileID: 97725103}
+  - {fileID: 1173414949}
