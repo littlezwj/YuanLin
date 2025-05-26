@@ -72,8 +72,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.99567604, y: 0.04074377, z: 0.99228907}
-  m_Center: {x: -0.0021619797, y: 0.03007266, z: 0.0013253689}
+  m_Size: {x: 0.8435383, y: 0.04074377, z: 0.8577888}
+  m_Center: {x: 0.0033502579, y: 0.03007266, z: 0.00022280216}
 --- !u!114 &7615140086952490833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeTag: "\u4E66\u5E26\u8349"
   cost: 300
-  itemSprite: {fileID: 21300000, guid: f047d89149b97cb4888cf9a36b0afd0f, type: 3}
+  itemSprite: {fileID: 21300000, guid: 30519935de06c1744bd237531bb52986, type: 3}
   hiddenValue: 1
   elegantValue: 1
   agileValue: 0
