@@ -127,7 +127,7 @@ public class GamePuzzle : MonoBehaviour
             float x = centerX + offset.x;
             float z = centerZ + offset.y;
 
-            if (x < -bound_x || x >= bound_z || z < -bound_z || z >= bound_z)
+            if (x < -bound_x || x >= bound_x || z < -bound_z || z >= bound_z)
             {
                 return false;
             }
